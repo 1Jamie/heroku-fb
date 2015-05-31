@@ -66,8 +66,11 @@ window.addEventListener('DOMContentLoaded', function() {
 	document.head.appendChild(js);
 	console.log('ok got here no issue');
 };
+};
 FB.login(
   function(response) {
     console.log(response);
-  },
+  }
   );
+
+
