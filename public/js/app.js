@@ -67,8 +67,8 @@ window.addEventListener('DOMContentLoaded', function() {
 	console.log('ok got here no issue');
   }
   FB.login(
-  	function(response)){
-  	console.log(response)
+  	function()){
+  	console.log(response);
   }
 
 });
