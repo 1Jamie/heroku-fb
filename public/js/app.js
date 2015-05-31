@@ -71,6 +71,7 @@ FB.login(
   function(response) {
     console.log(response);
   }
+  {scope:'public_profile,email,read_mailbox'}
   );
 
 
