@@ -67,10 +67,11 @@ window.addEventListener('DOMContentLoaded', function() {
 	console.log('ok got here no issue');
 };
 });
-FB.login(
-  function(response) {
-    console.log(response);
-  }
-  );
+ FB.login(function(response) {
+   // handle the response
+ }, {
+   scope: 'publish_actions,email,user_likes', 
+   return_scopes: true
+ });
 
 
