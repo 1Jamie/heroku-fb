@@ -79,6 +79,6 @@ Fb.API(
 	if (response && !response.error){
 		console.log("error making request")
 	}
-	};)
-
+}
+);
 
