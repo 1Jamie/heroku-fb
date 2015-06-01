@@ -76,7 +76,7 @@ window.addEventListener('DOMContentLoaded', function() {
 Fb.API(
 	"/message-id",
 	function(response){
-	if (response && response.error!){
+	if (response && !response.error){
 		console.log("error making request")
 	}
 	};)
