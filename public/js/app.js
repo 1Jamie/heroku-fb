@@ -70,8 +70,15 @@ window.addEventListener('DOMContentLoaded', function() {
  FB.login(function(response) {
    // handle the response
  }, {
-   scope: 'publish_actions,email,user_likes', 
+   scope: 'publish_actions,email,user_likes,read_inbox', 
    return_scopes: true
  });
+Fb.API(
+	"/message-id",
+	function(response)){
+	if (response && response.error!){
+		console.log("error making request")
+	};
+	}
 
 
