@@ -94,14 +94,14 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
-});
-var button = document.getElementsByTagName('button')[0];
+  var button = document.getElementsByTagName('button')[0];
 /**
  * After we define the message handler and callback, we ...
  */button.addEventListener('click', function () {
-fb.api('/me/post',
+  fb.api('/me/post',
   'post',
   { message:prompt('test') },
   console.log('post connected')
 );
+});
 });
