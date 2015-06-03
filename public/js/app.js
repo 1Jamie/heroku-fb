@@ -2,36 +2,40 @@
 // but without waiting for other external resources to load (css/images/etc)
 // That makes the app more responsive and perceived as faster.
 // https://developer.mozilla.org/Web/Reference/Events/DOMContentLoaded
+
+// We'll ask the browser to use strict code to help us catch errors earlier.
+// https://developer.mozilla.org/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode
+'use strict';
+
+/**
+ * I can't believe that FFOS webapps require you to put your entire script behind a listener ...
+ * its can be optional... i dont use it in my notification test app
+ * This platform / wireframe can't be optimal
+ */
 window.addEventListener('DOMContentLoaded', function() {
-
-  // We'll ask the browser to use strict code to help us catch errors earlier.
-  // https://developer.mozilla.org/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode
-  'use strict';
-
   var translate = navigator.mozL10n.get;
 
   // We want to wait until the localisations library has loaded all the strings.
   // So we'll tell it to let us know once it's ready.
   navigator.mozL10n.once(start);
 
-  // ---
-
   function start() {
-
     var message = document.getElementById('message');
-// We use textContent, inserting content from external sources in your page using innerHTML can be dangerous.
+
+    // We use textContent, inserting content from external sources in your page using innerHTML can be dangerous.
     // https://developer.mozilla.org/Web/API/Element.innerHTML#Security_considerations
     message.textContent = 'now loading fb';
 
-    
     window.fbAsyncInit = function fbAsyncInit() {
         message.textContent = 'fb loaded will now try init';
+        
         FB.init({
             status: true,
             appId: '1432144570413455',
             xfbml: true,
             version: 'v2.3'
         });
+        
         FB.getLoginStatus(function(response) {
           if (response.status === 'connected') {
             // the user is logged in and has authenticated your
@@ -52,6 +56,7 @@ window.addEventListener('DOMContentLoaded', function() {
           }
          });
     };
+    
     alert('starting ' + window.location.href.replace('index.html',''));
     console.log('0');
     var d = document;
@@ -64,22 +69,27 @@ window.addEventListener('DOMContentLoaded', function() {
     console.log('2');
     document.head.appendChild(js);
     console.log('ok got here no issue');
-};
+  };
+
+  FB.getLoginStatus(function(response) {
+    // handle response
+    if (response.status == 'connected') {
+      console.log('connected')
+    } else {
+      // if not logged in ask them to login
+      fb.login(function(response) {
+      // do something here
+      //the fb.login does doe what i needed to call the login, and the function response
+      //check to make sure they did
+    }
+  }
 });
- FB.getLoginStatus(function(response) {
-     //handel response
-     if (response.status == 'connected') {
-     console.log('connected')
-     };
-     else if {
-         fb.login(function(response) {
-         }, {
-             scope:'read-mailbox,user_about_me,public_profile,publish_actions'}
-         });
-     }
+
+fb.api('/me/post', 'post' {
+    message:prompt('test');
 });
-fb.api('/me/post', 'post' {message:prompt('test')};)
+//should i test this now...
 
 
 
-J
+
