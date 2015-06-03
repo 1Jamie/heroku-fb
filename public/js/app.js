@@ -14,7 +14,7 @@
  *
  * Yoric says: I never did that for my FFOS webapps.
  */
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', () => {
   var translate = navigator.mozL10n.get;
 
   /**
@@ -91,7 +91,7 @@ window.addEventListener('DOMContentLoaded', function() {
         //check to make sure they did
       });
     }
-  }
+  });
 });
 
 /**
@@ -100,11 +100,3 @@ window.addEventListener('DOMContentLoaded', function() {
 fb.api('/me/post', 'post' {
     message:prompt('test');
 });
-//let me commit and test again
-// k - you're on the way .. play with it some more ... it's not that hard
-// I just get bored fast with facebook ->> back to reading
-// thanks for the help... still one error that i can find using the console... will try to find it myself
-// What's the error message?
-// Avoid "function" use fat-arrows
-
-
