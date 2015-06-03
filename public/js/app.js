@@ -28,34 +28,34 @@ window.addEventListener('DOMContentLoaded', function() {
     message.textContent = 'now loading fb';
 
     window.fbAsyncInit = function fbAsyncInit() {
-        message.textContent = 'fb loaded will now try init';
+      message.textContent = 'fb loaded will now try init';
         
-        FB.init({
-            status: true,
-            appId: '1432144570413455',
-            xfbml: true,
-            version: 'v2.3'
-        });
+      FB.init({
+        status: true,
+        appId: '1432144570413455',
+        xfbml: true,
+        version: 'v2.3'
+      });
         
-        FB.getLoginStatus(function(response) {
-          if (response.status === 'connected') {
-            // the user is logged in and has authenticated your
-            // app, and response.authResponse supplies
-            // the user's ID, a valid access token, a signed
-            // request, and the time the access token 
-            // and signed request each expire
-            var uid = response.authResponse.userID;
-            var accessToken = response.authResponse.accessToken;
-            alert('ok user is connected');
-          } else if (response.status === 'not_authorized') {
-            // the user is logged in to Facebook, 
-            // but has not authenticated your app
-            alert('user have not authenticated app');
-          } else {
-            // the user isn't logged in to Facebook.
-            alert('user isnt logged into facebook');
-          }
-         });
+      FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+          // the user is logged in and has authenticated your
+          // app, and response.authResponse supplies
+          // the user's ID, a valid access token, a signed
+          // request, and the time the access token 
+          // and signed request each expire
+          var uid = response.authResponse.userID;
+          var accessToken = response.authResponse.accessToken;
+          alert('ok user is connected');
+        } else if (response.status === 'not_authorized') {
+          // the user is logged in to Facebook, 
+          // but has not authenticated your app
+          alert('user have not authenticated app');
+        } else {
+          // the user isn't logged in to Facebook.
+          alert('user isnt logged into facebook');
+        }
+      });
     }
     
     alert('starting ' + window.location.href.replace('index.html',''));
