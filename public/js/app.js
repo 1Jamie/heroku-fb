@@ -104,4 +104,4 @@ fb.api('/me/post',
   { message:prompt('test') },
   console.log('post connected')
 );
-}
+});
