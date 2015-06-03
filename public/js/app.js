@@ -19,66 +19,66 @@ window.addEventListener('DOMContentLoaded', function() {
   function start() {
 
     var message = document.getElementById('message');
-
-    // We're using textContent because inserting content from external sources into your page using innerHTML can be dangerous.
+// We use textContent, inserting content from external sources in your page using innerHTML can be dangerous.
     // https://developer.mozilla.org/Web/API/Element.innerHTML#Security_considerations
     message.textContent = 'now loading fb';
 
-	
-	window.fbAsyncInit = function fbAsyncInit() {
-		message.textContent = 'fb loaded will now try init';
-		FB.init({
-			status: true,
-			appId: '1432144570413455',
-			xfbml: true,
-			version: 'v2.3'
-		});
-		FB.getLoginStatus(function(response) {
-		  if (response.status === 'connected') {
-			// the user is logged in and has authenticated your
-			// app, and response.authResponse supplies
-			// the user's ID, a valid access token, a signed
-			// request, and the time the access token 
-			// and signed request each expire
-			var uid = response.authResponse.userID;
-			var accessToken = response.authResponse.accessToken;
-			alert('ok user is connected');
-		  } else if (response.status === 'not_authorized') {
-			// the user is logged in to Facebook, 
-			// but has not authenticated your app
-			alert('user have not authenticated app');
-		  } else {
-			// the user isn't logged in to Facebook.
-			alert('user isnt logged into facebook');
-		  }
-		 });
-	};
-	alert('starting ' + window.location.href.replace('index.html',''));
-	console.log('0');
-	var d = document;
-	var s = 'script';
-	var id = 'facebook-jssdk';
-	var js = d.createElement(s);
-	console.log('1');
-	js.id = id;
-	js.src = window.location.href.replace('index.html', '') + "/js/fbsdk.js";
-	console.log('2');
-	document.head.appendChild(js);
-	console.log('ok got here no issue');
+    
+    window.fbAsyncInit = function fbAsyncInit() {
+        message.textContent = 'fb loaded will now try init';
+        FB.init({
+            status: true,
+            appId: '1432144570413455',
+            xfbml: true,
+            version: 'v2.3'
+        });
+        FB.getLoginStatus(function(response) {
+          if (response.status === 'connected') {
+            // the user is logged in and has authenticated your
+            // app, and response.authResponse supplies
+            // the user's ID, a valid access token, a signed
+            // request, and the time the access token 
+            // and signed request each expire
+            var uid = response.authResponse.userID;
+            var accessToken = response.authResponse.accessToken;
+            alert('ok user is connected');
+          } else if (response.status === 'not_authorized') {
+            // the user is logged in to Facebook, 
+            // but has not authenticated your app
+            alert('user have not authenticated app');
+          } else {
+            // the user isn't logged in to Facebook.
+            alert('user isnt logged into facebook');
+          }
+         });
+    };
+    alert('starting ' + window.location.href.replace('index.html',''));
+    console.log('0');
+    var d = document;
+    var s = 'script';
+    var id = 'facebook-jssdk';
+    var js = d.createElement(s);
+    console.log('1');
+    js.id = id;
+    js.src = window.location.href.replace('index.html', '') + "/js/fbsdk.js";
+    console.log('2');
+    document.head.appendChild(js);
+    console.log('ok got here no issue');
 };
 });
- FB.login(function(response) {
-   // handle the response
- }, {
-   scope: 'publish_actions,email,user_likes,read_inbox', 
-   return_scopes: true
- });
-Fb.API(
-	"/message-id",
-	function(response){
-	if (response && !response.error){
-		console.log("error making request")
-	}
-}
-);
+ FB.getLoginStatus(function(response) {
+     //handel response
+     if (response.status == 'connected') {
+     console.log('connected')
+     };
+     else {
+         fb.login(function(response) {
+         }, {
+             scope:'read-mailbox,user_about_me,public_profile,publish_actions'}
+         });
+     }
+});
+fb.api('/me/post', 'post' {message:prompt('test')};)
+
+
 
