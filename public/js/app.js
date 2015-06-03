@@ -97,5 +97,4 @@ window.addEventListener('DOMContentLoaded', () => {
 /**
  * After we define the message handler and callback, we ...
  */
-fb.api('/me/post', 'post' {message:prompt('test');
-});
+fb.api('/me/post', 'post', { message:prompt('test') });
