@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', function() {
             var uid = response.authResponse.userID;
             var accessToken = response.authResponse.accessToken;
             alert('ok user is connected');
-          },
+          }
           elseif (response.status === 'not_authorized') {
             // the user is logged in to Facebook, 
             // but has not authenticated your app
