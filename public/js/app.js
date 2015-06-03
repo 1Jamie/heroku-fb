@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', () => {
           alert('user isnt logged into facebook');
         }
       });
-    }
+    };
     
     alert('starting ' + window.location.href.replace('index.html',''));
     
@@ -100,7 +100,7 @@ window.addEventListener('DOMContentLoaded', () => {
   /**
    * After we define the message handler and callback, we ...
    */
-   button.addEventListener('click', function () {
+   button.addEventListener('click', () => {
      fb.api('/me/post', 'post', { message:prompt('test') } );
      console.log('post connected');
    });
