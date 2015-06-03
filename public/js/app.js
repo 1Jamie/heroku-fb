@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
         version: 'v2.3'
       });
         
-      FB.getLoginStatus(function(response) {
+      FB.getLoginStatus(response => {
         if (response.status === 'connected') {
           // the user is logged in and has authenticated your
           // app, and response.authResponse supplies
@@ -97,6 +97,5 @@ window.addEventListener('DOMContentLoaded', () => {
 /**
  * After we define the message handler and callback, we ...
  */
-fb.api('/me/post', 'post' {
-    message:prompt('test');
+fb.api('/me/post', 'post' {message:prompt('test');
 });
