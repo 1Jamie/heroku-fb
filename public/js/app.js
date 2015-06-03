@@ -15,10 +15,9 @@
 window.addEventListener('DOMContentLoaded', function() {
   var translate = navigator.mozL10n.get;
 
-  // We want to wait until the localisations library has loaded all the strings.
-  // So we'll tell it to let us know once it's ready.
-  navigator.mozL10n.once(start);
-
+  /**
+   * Function definitions first, triggered after localization library completes.
+   */
   function start() {
     var message = document.getElementById('message');
 
@@ -71,10 +70,17 @@ window.addEventListener('DOMContentLoaded', function() {
     console.log('ok got here no issue');
   };
 
+  // We want to wait until the localisations library has loaded all the strings.
+  // might remove the localisations since facebook will do it for itself
+  // So we'll tell it to let us know once it's ready.
+  navigator.mozL10n.once(start);
+  
+  // the above just initalizes the connectin to facebook to allow the use of the sdk
+  // Now we can ...
   FB.getLoginStatus(function(response) {
     // handle response
     if (response.status == 'connected') {
-      console.log('connected')
+      console.log('connected');
     } else {
       // if not logged in ask them to login
       fb.login(function(response) {
@@ -83,12 +89,16 @@ window.addEventListener('DOMContentLoaded', function() {
       //check to make sure they did
     }
   }
+  
 });
 
+/**
+ * After we define the message handler and callback, we ...
+ */
 fb.api('/me/post', 'post' {
     message:prompt('test');
 });
-//should i test this now...
+//let me commit and test again
 
 
 
