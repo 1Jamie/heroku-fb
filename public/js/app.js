@@ -42,7 +42,8 @@ window.addEventListener('DOMContentLoaded', function() {
             var uid = response.authResponse.userID;
             var accessToken = response.authResponse.accessToken;
             alert('ok user is connected');
-          } else if (response.status === 'not_authorized') {
+          },
+          elseif (response.status === 'not_authorized') {
             // the user is logged in to Facebook, 
             // but has not authenticated your app
             alert('user have not authenticated app');
@@ -71,7 +72,7 @@ window.addEventListener('DOMContentLoaded', function() {
      if (response.status == 'connected') {
      console.log('connected')
      };
-     else {
+     elseif {
          fb.login(function(response) {
          }, {
              scope:'read-mailbox,user_about_me,public_profile,publish_actions'}
@@ -82,3 +83,4 @@ fb.api('/me/post', 'post' {message:prompt('test')};)
 
 
 
+J
