@@ -96,6 +96,7 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   
   var button = document.getElementsByTagName('button')[0];
+  console.log('event listener started')
   
   /**
    * After we define the message handler and callback, we ...
