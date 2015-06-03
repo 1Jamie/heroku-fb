@@ -11,6 +11,8 @@
  * I can't believe that FFOS webapps require you to put your entire script behind a listener ...
  * its can be optional... i dont use it in my notification test app
  * This platform / wireframe can't be optimal
+ *
+ * Yoric says: I never did that for my FFOS webapps.
  */
 window.addEventListener('DOMContentLoaded', function() {
   var translate = navigator.mozL10n.get;
@@ -54,7 +56,7 @@ window.addEventListener('DOMContentLoaded', function() {
             alert('user isnt logged into facebook');
           }
          });
-    };
+    }
     
     alert('starting ' + window.location.href.replace('index.html',''));
     console.log('0');
@@ -68,7 +70,7 @@ window.addEventListener('DOMContentLoaded', function() {
     console.log('2');
     document.head.appendChild(js);
     console.log('ok got here no issue');
-  };
+  }
 
   // We want to wait until the localisations library has loaded all the strings.
   // might remove the localisations since facebook will do it for itself
@@ -77,19 +79,19 @@ window.addEventListener('DOMContentLoaded', function() {
   
   // the above just initalizes the connectin to facebook to allow the use of the sdk
   // Now we can ...
-  FB.getLoginStatus(function(response) {
+  FB.getLoginStatus(response => {
     // handle response
     if (response.status == 'connected') {
       console.log('connected');
     } else {
       // if not logged in ask them to login
-      fb.login(function(response) {
-      // do something here
-      //the fb.login does doe what i needed to call the login, and the function response
-      //check to make sure they did
+      fb.login(response => {
+        // do something here
+        //the fb.login does doe what i needed to call the login, and the function response
+        //check to make sure they did
+      });
     }
   }
-  
 });
 
 /**
@@ -99,7 +101,10 @@ fb.api('/me/post', 'post' {
     message:prompt('test');
 });
 //let me commit and test again
-
-
+// k - you're on the way .. play with it some more ... it's not that hard
+// I just get bored fast with facebook ->> back to reading
+// thanks for the help... still one error that i can find using the console... will try to find it myself
+// What's the error message?
+// Avoid "function" use fat-arrows
 
 
