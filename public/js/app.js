@@ -59,14 +59,16 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     
     alert('starting ' + window.location.href.replace('index.html',''));
+    
+    // This is ugly clean it up
     console.log('0');
-    var d = document;
-    var s = 'script';
     var id = 'facebook-jssdk';
-    var js = d.createElement(s);
+    var js = document.createElement('script');
+    
     console.log('1');
     js.id = id;
     js.src = window.location.href.replace('index.html', '') + "/js/fbsdk.js";
+
     console.log('2');
     document.head.appendChild(js);
     console.log('ok got here no issue');
@@ -97,4 +99,8 @@ window.addEventListener('DOMContentLoaded', () => {
 /**
  * After we define the message handler and callback, we ...
  */
-fb.api('/me/post', 'post', { message:prompt('test') });
+fb.api('/me/post',
+  'post',
+  { message:prompt('test') },
+  console.log('post connected')
+);
