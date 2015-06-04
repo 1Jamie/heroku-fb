@@ -20,8 +20,7 @@
         <h1 data-l10n-id="app_title">Testing...</h1>
         <p data-l10n-id="app_description">Facebook connection test</p>
         <p id="message"></p>
-        <div id="loginState">
-        <fb:login-button scope="public_profile,email,publish_actions" data-auto-logout-link="true" onlogin="checkLoginState();"></fb:login-button>
+        <div class="fb-login-button" scope="public_profile,email,publish_actions" data-size="large" onlogin="checkLoginState();" data-auto-logout-link="true"></div>
         <button id="btnPost">post</button>
         <div id="status"></div>
     </body>
