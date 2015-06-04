@@ -94,7 +94,7 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
-  
+  console.log('got to element get')
   var button = document.getElementsByTagName('button')[0];
   console.log('event listener started')
   
