@@ -48,6 +48,13 @@ window.addEventListener('DOMContentLoaded', () => {
           FB.api('/me/post', 'post', {
             message: 'test'
           });
+          function(response){
+              if (!response && !error.response){
+              console.log('an error occured')
+          }
+          else {
+              console.log('connected and post was made')
+          }
           console.log('post connected');
         }, false);
       }
