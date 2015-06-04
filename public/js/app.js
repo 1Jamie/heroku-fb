@@ -81,12 +81,11 @@ window.addEventListener('DOMContentLoaded', () => {
         } else if (response.status === 'not_authorized') {
           // the user is logged in to Facebook, 
           // but has not authenticated your app
-          alert('user have not authenticated app');
+          alert('user has not authenticated app');
         } else {
           // the user isn't logged in to Facebook.
           alert('user isnt logged into facebook, will prompt you to login now');
           // if not logged in ask them to login
-		  alert(FB.login);
           FB.login(function() {
             // do something here
             //the fb.login does doe what i needed to call the login, and the function response
@@ -109,16 +108,13 @@ window.addEventListener('DOMContentLoaded', () => {
     alert('starting ' + window.location.href.replace('index.html', ''));
 
     // This is ugly clean it up
-    console.log('0');
-    var id = 'facebook-jssdk';
-    var js = document.createElement('script');
-
-    console.log('1');
-    js.id = id;
-    js.src = window.location.href.replace('index.html', '') + "/js/fbsdk.js";
-
-    console.log('2');
-    document.head.appendChild(js);
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) return;
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/es_LA/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'))
     console.log('ok got here no issue');
   }
 
