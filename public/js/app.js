@@ -1,127 +1,63 @@
-// DOMContentLoaded is fired once the document has been loaded and parsed,
-// but without waiting for other external resources to load (css/images/etc)
-// That makes the app more responsive and perceived as faster.
-// https://developer.mozilla.org/Web/Reference/Events/DOMContentLoaded
-// We'll ask the browser to use strict code to help us catch errors earlier.
-// https://developer.mozilla.org/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode
-'use strict';
-
-/**
- * I can't believe that FFOS webapps require you to put your entire script behind a listener ...
- * its can be optional... i dont use it in my notification test app
- * This platform / wireframe can't be optimal
- *
- * Yoric says: I never did that for my FFOS webapps.
- */
-window.addEventListener('DOMContentLoaded', () => {
-  var translate = navigator.mozL10n.get;
-
-  /**
-   * Function definitions first, triggered after localization library completes.
-   */
-  function start() {
-    var message = document.getElementById('message');
-
-    // We use textContent, inserting content from external sources in your page using innerHTML can be dangerous.
-    // https://developer.mozilla.org/Web/API/Element.innerHTML#Security_considerations
-    message.textContent = 'now loading fb';
-
-    window.fbAsyncInit = function fbAsyncInit() {
-      message.textContent = 'fb loaded will now try init';
-
-      FB.init({
-        status: true,
-        appId: '1432144570413455',
-        xfbml: true,
-        version: 'v2.3'
-      });
-
-      var postLogin = function() {
-        //runs the button init
-		alert('staring postLogin');
-        console.log('got to element get')
-        var button = document.getElementById('btnPost'); // try to use getelement id isntead of its much faster
-        console.log('event listener started')
-          /**
-           * * After we define the message handler and callback, we ...
-           */
-          //error is somewhere around here as far as i know
-        button.addEventListener('click', function() {
-		  alert('clicked btn');
-          console.log('clicked button');
-          FB.api('/me/post', 'post', {
-              message: 'test'
-            },
-            function(response) {
-			  alert('postLogin FB.api post reponse received', 'response:', response);
-              if (!response && !error.response) {
-                console.log('an error occured')
-              } else {
-                console.log('connected and post was made')
-              }
-            }
-          );
-
-        }, false);
-		alert('did postLogin');
-      };
-
-      FB.getLoginStatus(response => {
-        if (response.status === 'connected') {
-          // the user is logged in and has authenticated your
-          // app, and response.authResponse supplies
-          // the user's ID, a valid access token, a signed
-          // request, and the time the access token 
-          // and signed request each expire
-          var uid = response.authResponse.userID;
-          var accessToken = response.authResponse.accessToken;
-          alert('ok user is connected will now do postLogin');
-          postLogin();
-		  alert('ok did post login');
-        } else if (response.status === 'not_authorized') {
-          // the user is logged in to Facebook, 
-          // but has not authenticated your app
-          alert('user has not authenticated app');
-        } else {
-          // the user isn't logged in to Facebook.
-          alert('user isnt logged into facebook, will prompt you to login now now');
-          // if not logged in ask them to login
-          FB.login(function() {
-            // do something here
-            //the fb.login does doe what i needed to call the login, and the function response
-            //check to make sure they did
-            //window.location.reload(); // reload app
-            alert('ok logged you in will now do postLogin')
-            postLogin();
-			alert('ok did post login');
-          }, {
-			  scope: 'publish_actions'
-		  }); // need to look at facebook api for this
-		  alert('should have triggered login');
-        }
-      });
-
-
-
-    };
-
-    alert('starting ' + window.location.href.replace('index.html', ''));
-
-    // This is ugly clean it up
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) return;
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'))
-    console.log('ok got here no issue');
+//this is a test setup
+function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
   }
 
-  // We want to wait until the localisations library has loaded all the strings.
-  // might remove the localisations since facebook will do it for itself
-  // So we'll tell it to let us know once it's ready.
-  navigator.mozL10n.once(start);
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1432144570413455',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.3' // use version 2.3
+  });
 
-});
-// this here is the good code
+  //check the login
+ FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+    // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
+  }
