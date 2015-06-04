@@ -84,7 +84,7 @@ window.addEventListener('DOMContentLoaded', () => {
           alert('user has not authenticated app');
         } else {
           // the user isn't logged in to Facebook.
-          alert('user isnt logged into facebook, will prompt you to login now');
+          alert('user isnt logged into facebook, will prompt you to login now now');
           // if not logged in ask them to login
           FB.login(function() {
             // do something here
