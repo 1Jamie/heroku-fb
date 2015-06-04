@@ -56,8 +56,8 @@ window.addEventListener('DOMContentLoaded', () => {
                     console.log('an error occured')
                   } else {
                     console.log('connected and post was made')
-                  });
-              }
+                  };
+              });
               console.log('post connected');
             });
 
