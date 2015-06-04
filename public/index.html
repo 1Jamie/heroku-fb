@@ -5,14 +5,11 @@
         <title>test fb setup</title>
         <meta name="description" content="A fb connection test">
 
-        -->
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/app.css">
 
-        -->
         <script type="text/javascript" src="js/app.js" defer></script>
 
-    
         <link rel="prefetch" type="application/l10n" href="data/locales.ini" />
         <script type="text/javascript" src="js/libs/l10n.js" defer></script>
     </head>
@@ -20,8 +17,14 @@
         <h1 data-l10n-id="app_title">Testing...</h1>
         <p data-l10n-id="app_description">Facebook connection test</p>
         <p id="message"></p>
-        <div class="fb-login-button" scope="public_profile,email,publish_actions" data-size="large" onlogin="checkLoginState();" data-auto-logout-link="true"></div>
+        <div id="myProfile"></div>
+        <div class="fb-login-button" scope="public_profile,email,publish_actions" data-size="large" onclick="checkLoginState();" data-auto-logout-link="true"></div>
         <button id="btnPost">post</button>
         <div id="status"></div>
+        <hr>
+        <div id="postStatus">
+        </div>
+        <div id="getFeed">
+        </div>
     </body>
 </html>

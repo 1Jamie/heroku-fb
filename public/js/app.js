@@ -25,6 +25,7 @@ function statusChangeCallback(response) {
         'into Facebook.';
     }
   }
+
 //posting
   var postLogin = function() {
         //runs the button init
@@ -81,18 +82,18 @@ function statusChangeCallback(response) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
+    js.src = "js/fbsdk.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-    // Here we run a very simple test of the Graph API after login is
+  // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+        '<img src="' + response.picture.data.url + '"> ' + 'You\'re logged in as, ' + response.name + '!';
     });
   }
 //test
