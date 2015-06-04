@@ -14,106 +14,110 @@
  * Yoric says: I never did that for my FFOS webapps.
  */
 window.addEventListener('DOMContentLoaded', () => {
-      var translate = navigator.mozL10n.get;
+  var translate = navigator.mozL10n.get;
 
-      /**
-       * Function definitions first, triggered after localization library completes.
-       */
-      function start() {
-        var message = document.getElementById('message');
+  /**
+   * Function definitions first, triggered after localization library completes.
+   */
+  function start() {
+    var message = document.getElementById('message');
 
-        // We use textContent, inserting content from external sources in your page using innerHTML can be dangerous.
-        // https://developer.mozilla.org/Web/API/Element.innerHTML#Security_considerations
-        message.textContent = 'now loading fb';
+    // We use textContent, inserting content from external sources in your page using innerHTML can be dangerous.
+    // https://developer.mozilla.org/Web/API/Element.innerHTML#Security_considerations
+    message.textContent = 'now loading fb';
 
-        window.fbAsyncInit = function fbAsyncInit() {
-          message.textContent = 'fb loaded will now try init';
+    window.fbAsyncInit = function fbAsyncInit() {
+      message.textContent = 'fb loaded will now try init';
 
-          FB.init({
-            status: true,
-            appId: '1432144570413455',
-            xfbml: true,
-            version: 'v2.3'
-          });
-
-          var postLogin = function() {
-            //runs the button init
-            console.log('got to element get')
-            var button = document.getElementsByTagName('button')[0];
-            console.log('event listener started')
-              /**
-               * * After we define the message handler and callback, we ...
-               */
-              //error is somewhere around here as far as i know
-              // supposed to be that way
-            button.addEventListener('click', function() {
-              FB.api('/me/post', 'post', {
-                  message: 'test'
-                },
-
-                function(response) {
-                  if (!response && !error.response) {
-                    console.log('an error occured')
-                  } else {
-                    console.log('connected and post was made')
-                  };
-              });
-              console.log('post connected');
-            });
-
-            FB.getLoginStatus(response => {
-              if (response.status === 'connected') {
-                // the user is logged in and has authenticated your
-                // app, and response.authResponse supplies
-                // the user's ID, a valid access token, a signed
-                // request, and the time the access token 
-                // and signed request each expire
-                var uid = response.authResponse.userID;
-                var accessToken = response.authResponse.accessToken;
-                alert('ok user is connected');
-                postLogin();
-              } else if (response.status === 'not_authorized') {
-                // the user is logged in to Facebook, 
-                // but has not authenticated your app
-                alert('user have not authenticated app');
-              } else {
-                // the user isn't logged in to Facebook.
-                alert('user isnt logged into facebook, will prompt you to login now');
-                // if not logged in ask them to login
-                fb.login(response => {
-                  // do something here
-                  //the fb.login does doe what i needed to call the login, and the function response
-                  //check to make sure they did
-                  //window.location.reload(); // reload app
-                  alert('ok logged you in')
-                  postLogin();
-                });
-              }
-            });
-
-
-
-          };
-
-          alert('starting ' + window.location.href.replace('index.html', ''));
-
-          // This is ugly clean it up
-          console.log('0');
-          var id = 'facebook-jssdk';
-          var js = document.createElement('script');
-
-          console.log('1');
-          js.id = id;
-          js.src = window.location.href.replace('index.html', '') + "/js/fbsdk.js";
-
-          console.log('2');
-          document.head.appendChild(js);
-          console.log('ok got here no issue');
-        }
-
-        // We want to wait until the localisations library has loaded all the strings.
-        // might remove the localisations since facebook will do it for itself
-        // So we'll tell it to let us know once it's ready.
-        navigator.mozL10n.once(start);
-
+      FB.init({
+        status: true,
+        appId: '1432144570413455',
+        xfbml: true,
+        version: 'v2.3'
       });
+
+      var postLogin = function() {
+        //runs the button init
+        console.log('got to element get')
+        var button = document.getElementsByTagName('button')[0];
+        console.log('event listener started')
+          /**
+           * * After we define the message handler and callback, we ...
+           */
+          //error is somewhere around here as far as i know
+          // supposed to be that way
+        button.addEventListener('click', function() {
+
+          console.log('clicked button');
+          FB.api('/me/post', 'post', {
+              message: 'test'
+            },
+            function(response) {
+              if (!response && !error.response) {
+                console.log('an error occured')
+              } else {
+                console.log('connected and post was made')
+              }
+            }
+          );
+
+        }, false);
+      }
+
+      FB.getLoginStatus(response => {
+        if (response.status === 'connected') {
+          // the user is logged in and has authenticated your
+          // app, and response.authResponse supplies
+          // the user's ID, a valid access token, a signed
+          // request, and the time the access token 
+          // and signed request each expire
+          var uid = response.authResponse.userID;
+          var accessToken = response.authResponse.accessToken;
+          alert('ok user is connected');
+          postLogin();
+        } else if (response.status === 'not_authorized') {
+          // the user is logged in to Facebook, 
+          // but has not authenticated your app
+          alert('user have not authenticated app');
+        } else {
+          // the user isn't logged in to Facebook.
+          alert('user isnt logged into facebook, will prompt you to login now');
+          // if not logged in ask them to login
+          fb.login(response => {
+            // do something here
+            //the fb.login does doe what i needed to call the login, and the function response
+            //check to make sure they did
+            //window.location.reload(); // reload app
+            alert('ok logged you in')
+            postLogin();
+          });
+        }
+      });
+
+
+
+    };
+
+    alert('starting ' + window.location.href.replace('index.html', ''));
+
+    // This is ugly clean it up
+    console.log('0');
+    var id = 'facebook-jssdk';
+    var js = document.createElement('script');
+
+    console.log('1');
+    js.id = id;
+    js.src = window.location.href.replace('index.html', '') + "/js/fbsdk.js";
+
+    console.log('2');
+    document.head.appendChild(js);
+    console.log('ok got here no issue');
+  }
+
+  // We want to wait until the localisations library has loaded all the strings.
+  // might remove the localisations since facebook will do it for itself
+  // So we'll tell it to let us know once it's ready.
+  navigator.mozL10n.once(start);
+
+});
+// this here is the good code
