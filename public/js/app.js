@@ -90,10 +90,10 @@ function statusChangeCallback(response) {
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+    FB.api('/me?fields=name,picture', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
-        '<img src="' + response.picture.data.url + '"> ' + 'You\'re logged in as, ' + response.name + '!';
+        '<img src="' + response.picture.data.url + '"> ' + 'You\'re logged in as ' + response.name;
     });
   }
 //test
