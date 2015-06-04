@@ -29,9 +29,9 @@ function statusChangeCallback(response) {
   var postLogin = function() {
         //runs the button init
     alert('staring postLogin');
-        console.log('got to element get')
+        console.log('got to element get');
         var button = document.getElementById('btnPost'); 
-        console.log('event listener started')
+        console.log('event listener started');
         
         
         button.addEventListener('click', function() {
@@ -43,9 +43,9 @@ function statusChangeCallback(response) {
             function(response) {
         alert('postLogin FB.api post reponse received', 'response:', response);
               if (!response && !error.response) {
-                console.log('an error occured')
+                console.log('an error occured');
               } else {
-                console.log('connected and post was made')
+                console.log('connected and post was made');
               }
             }
           );
@@ -71,9 +71,8 @@ function statusChangeCallback(response) {
 
   //check the login
  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-    {return_scopes: true,}
-  });
+    statusChangeCallback(response); }
+   );
 
   };
 
