@@ -96,11 +96,11 @@ function testAPI() {
 
 function displayDiv(value) {
   if (value) {
-    document.getElementById('postStatus').style.display = block
-    document.getElementById('getFeed').style.display = block
+    document.getElementById('postStatus').style.display = 'block';
+    document.getElementById('getFeed').style.display = 'block';
   }
   else {
-    document.getElementById('postStatus').style.display = none
-    document.getElementById('getFeed').style.display = none
+    document.getElementById('postStatus').style.display = 'none';
+    document.getElementById('getFeed').style.display = 'none';
   }
 }
