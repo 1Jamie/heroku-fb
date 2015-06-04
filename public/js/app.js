@@ -86,7 +86,7 @@ window.addEventListener('DOMContentLoaded', () => {
           // the user isn't logged in to Facebook.
           alert('user isnt logged into facebook, will prompt you to login now');
           // if not logged in ask them to login
-          FB.login(response => {
+          FB.login(function() {
             // do something here
             //the fb.login does doe what i needed to call the login, and the function response
             //check to make sure they did
@@ -94,7 +94,9 @@ window.addEventListener('DOMContentLoaded', () => {
             alert('ok logged you in will now do postLogin')
             postLogin();
 			alert('ok did post login');
-          });
+          }, {
+			  scope: 'publish_actions'
+		  }); // need to look at facebook api for this
         }
       });
 
