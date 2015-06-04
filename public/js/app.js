@@ -45,7 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
            * * After we define the message handler and callback, we ...
            */
         button.addEventListener('click', () => {
-          fb.api('/me/post', 'post', {
+          FB.api('/me/post', 'post', {
             message: 'test'
           });
           console.log('post connected');
@@ -71,7 +71,7 @@ window.addEventListener('DOMContentLoaded', () => {
           // the user isn't logged in to Facebook.
           alert('user isnt logged into facebook, will prompt you to login now');
           // if not logged in ask them to login
-          fb.login(response => {
+          FB.login(response => {
             // do something here
             //the fb.login does doe what i needed to call the login, and the function response
             //check to make sure they did
