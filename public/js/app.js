@@ -2,7 +2,6 @@
 // but without waiting for other external resources to load (css/images/etc)
 // That makes the app more responsive and perceived as faster.
 // https://developer.mozilla.org/Web/Reference/Events/DOMContentLoaded
-
 // We'll ask the browser to use strict code to help us catch errors earlier.
 // https://developer.mozilla.org/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode
 'use strict';
@@ -29,14 +28,30 @@ window.addEventListener('DOMContentLoaded', () => {
 
     window.fbAsyncInit = function fbAsyncInit() {
       message.textContent = 'fb loaded will now try init';
-        
+
       FB.init({
         status: true,
         appId: '1432144570413455',
         xfbml: true,
         version: 'v2.3'
       });
-        
+
+      var postLogin = function() {
+        //runs the button init
+        console.log('got to element get')
+        var button = document.getElementsByTagName('button')[0];
+        console.log('event listener started')
+          /**
+           * * After we define the message handler and callback, we ...
+           */
+        button.addEventListener('click', () => {
+          fb.api('/me/post', 'post', {
+            message: 'test'
+          });
+          console.log('post connected');
+        });
+      }
+
       FB.getLoginStatus(response => {
         if (response.status === 'connected') {
           // the user is logged in and has authenticated your
@@ -47,24 +62,37 @@ window.addEventListener('DOMContentLoaded', () => {
           var uid = response.authResponse.userID;
           var accessToken = response.authResponse.accessToken;
           alert('ok user is connected');
+          postLogin();
         } else if (response.status === 'not_authorized') {
           // the user is logged in to Facebook, 
           // but has not authenticated your app
           alert('user have not authenticated app');
         } else {
           // the user isn't logged in to Facebook.
-          alert('user isnt logged into facebook');
+          alert('user isnt logged into facebook, will prompt you to login now');
+          // if not logged in ask them to login
+          fb.login(response => {
+            // do something here
+            //the fb.login does doe what i needed to call the login, and the function response
+            //check to make sure they did
+            //window.location.reload(); // reload app
+            alert('ok logged you in')
+            postLogin();
+          });
         }
       });
+
+
+
     };
-    
-    alert('starting ' + window.location.href.replace('index.html',''));
-    
+
+    alert('starting ' + window.location.href.replace('index.html', ''));
+
     // This is ugly clean it up
     console.log('0');
     var id = 'facebook-jssdk';
     var js = document.createElement('script');
-    
+
     console.log('1');
     js.id = id;
     js.src = window.location.href.replace('index.html', '') + "/js/fbsdk.js";
@@ -78,32 +106,5 @@ window.addEventListener('DOMContentLoaded', () => {
   // might remove the localisations since facebook will do it for itself
   // So we'll tell it to let us know once it's ready.
   navigator.mozL10n.once(start);
-  
-  // the above just initalizes the connectin to facebook to allow the use of the sdk
-  // Now we can ...
-  FB.getLoginStatus(response => {
-    // handle response
-    if (response.status == 'connected') {
-      console.log('connected');
-    } else {
-      // if not logged in ask them to login
-      fb.login(response => {
-        // do something here
-        //the fb.login does doe what i needed to call the login, and the function response
-        //check to make sure they did
-      });
-    }
-  });
-  console.log('got to element get')
-  var button = document.getElementsByTagName('button')[0];
-  console.log('event listener started')
-  
-  /**
-   * After we define the message handler and callback, we ...
-   */
-   button.addEventListener('click', () => {
-     fb.api('/me/post', 'post', { message:'test' } );
-     console.log('post connected');
-   });
-   
+
 });
