@@ -11,32 +11,32 @@ function statusChangeCallback(response) {
     // Logged into your app and Facebook.
       var uid = response.authResponse.userID;
       var accessToken = response.authResponse.accessToken;
-      console.log('ok user is connected will now do postLogin');
-      postLogin('test');
+      console.log('ok user is connected will now do postStuff');
+      postStuff('test');
       testAPI();
   } else if (response.status === 'not_authorized') {
     // The person is logged into Facebook, but not your app.
-    document.getElementById('myProfile').innerHTML = 'Please log ' +
-      'into this app.';
+    document.getElementById('myProfile').innerHTML = 'Please log into this app.';
+    displayDiv(false);
   } else {
     // The person is not logged into Facebook, so we're not sure if
     // they are logged into this app or not.
-    document.getElementById('myProfile').innerHTML = 'Please log ' +
-      'into Facebook.';
+    document.getElementById('myProfile').innerHTML = 'Please log into Facebook.';
+    displayDiv(false);
   }
 }
 
 //posting
-var postStuff = function(stuff=null) {
+var postStuff = function(stuff) {
     console.log('got to element get');
     var status = document.getElementById('btnPost');
     console.log('event listener started');
 
     status.addEventListener('click', function() {
-      if (stuff == null){
-        msg = document.getElementById('story').value
+      if (stuff){
+        msg = stuff;
       } else {
-        msg = stuff
+        msg = document.getElementById('story').value;
       }
 
       console.log('clicked button');
@@ -70,9 +70,7 @@ window.fbAsyncInit = function() {
     });
 
     //check the login
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response); }
-     );
+    checkLoginState();
   };
 
 // Load the SDK asynchronously
@@ -98,11 +96,11 @@ function testAPI() {
 
 function displayDiv(value) {
   if (value) {
-    document.getElementById('postStatus').style.display = none
-    document.getElementById('getFeed').style.display = none
-  }
-  else {
     document.getElementById('postStatus').style.display = block
     document.getElementById('getFeed').style.display = block
+  }
+  else {
+    document.getElementById('postStatus').style.display = none
+    document.getElementById('getFeed').style.display = none
   }
 }
