@@ -112,7 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
          var js, fjs = d.getElementsByTagName(s)[0];
          if (d.getElementById(id)) return;
          js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/es_LA/sdk.js";
+         js.src = "//connect.facebook.net/en/sdk.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'))
     console.log('ok got here no issue');
