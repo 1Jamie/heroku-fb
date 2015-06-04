@@ -38,21 +38,22 @@ window.addEventListener('DOMContentLoaded', () => {
 
       var postLogin = function() {
         //runs the button init
+		alert('staring postLogin');
         console.log('got to element get')
-        var button = document.getElementsByTagName('button')[0];
+        var button = document.getElementById('btnPost'); // try to use getelement id isntead of its much faster
         console.log('event listener started')
           /**
            * * After we define the message handler and callback, we ...
            */
           //error is somewhere around here as far as i know
-          // supposed to be that way
         button.addEventListener('click', function() {
-
+		  alert('clicked btn');
           console.log('clicked button');
           FB.api('/me/post', 'post', {
               message: 'test'
             },
             function(response) {
+			  alert('postLogin FB.api post reponse received', 'response:', response);
               if (!response && !error.response) {
                 console.log('an error occured')
               } else {
@@ -62,7 +63,8 @@ window.addEventListener('DOMContentLoaded', () => {
           );
 
         }, false);
-      }
+		alert('did postLogin');
+      };
 
       FB.getLoginStatus(response => {
         if (response.status === 'connected') {
@@ -73,8 +75,9 @@ window.addEventListener('DOMContentLoaded', () => {
           // and signed request each expire
           var uid = response.authResponse.userID;
           var accessToken = response.authResponse.accessToken;
-          alert('ok user is connected');
+          alert('ok user is connected will now do postLogin');
           postLogin();
+		  alert('ok did post login');
         } else if (response.status === 'not_authorized') {
           // the user is logged in to Facebook, 
           // but has not authenticated your app
@@ -88,8 +91,9 @@ window.addEventListener('DOMContentLoaded', () => {
             //the fb.login does doe what i needed to call the login, and the function response
             //check to make sure they did
             //window.location.reload(); // reload app
-            alert('ok logged you in')
+            alert('ok logged you in will now do postLogin')
             postLogin();
+			alert('ok did post login');
           });
         }
       });
