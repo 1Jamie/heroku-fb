@@ -55,9 +55,9 @@ window.addEventListener('DOMContentLoaded', () => {
           else {
               console.log('connected and post was made')
           });
+          }
           console.log('post connected');
-        }, false);
-      }
+          });
 
       FB.getLoginStatus(response => {
         if (response.status === 'connected') {
