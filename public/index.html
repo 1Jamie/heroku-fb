@@ -17,13 +17,12 @@
         <script type="text/javascript" src="js/libs/l10n.js" defer></script>
     </head>
     <body>
-        <h1 data-l10n-id="app_title">testing facbook setup</h1>
-        <p data-l10n-id="app_description">This app is empty currently, this is a fb connection test</p>
+        <h1 data-l10n-id="app_title">Testing...</h1>
+        <p data-l10n-id="app_description">Facebook connection test</p>
         <p id="message"></p>
-        <fb:login-button scope="public_profile,email,publish_actions" onlogin="checkLoginState();">
-</fb:login-button>
+        <div id="loginState">
+        <fb:login-button scope="public_profile,email,publish_actions" data-auto-logout-link="true" onlogin="checkLoginState();"></fb:login-button>
         <button id="btnPost">post</button>
-        <div id="status">
-</div>
+        <div id="status"></div>
     </body>
 </html>
