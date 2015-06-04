@@ -97,6 +97,7 @@ window.addEventListener('DOMContentLoaded', () => {
           }, {
 			  scope: 'publish_actions'
 		  }); // need to look at facebook api for this
+		  alert('should have triggered login');
         }
       });
 
