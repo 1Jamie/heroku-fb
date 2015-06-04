@@ -6,8 +6,13 @@ function statusChangeCallback(response) {
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
+
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
+       var uid = response.authResponse.userID;
+          var accessToken = response.authResponse.accessToken;
+          alert('ok user is connected will now do postLogin');
+          postLogin();
       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
@@ -20,6 +25,35 @@ function statusChangeCallback(response) {
         'into Facebook.';
     }
   }
+//posting
+  var postLogin = function() {
+        //runs the button init
+    alert('staring postLogin');
+        console.log('got to element get')
+        var button = document.getElementById('btnPost'); 
+        console.log('event listener started')
+        
+        
+        button.addEventListener('click', function() {
+      alert('clicked btn');
+          console.log('clicked button');
+          FB.api('/me/post', 'post', {
+              message: 'test'
+            },
+            function(response) {
+        alert('postLogin FB.api post reponse received', 'response:', response);
+              if (!response && !error.response) {
+                console.log('an error occured')
+              } else {
+                console.log('connected and post was made')
+              }
+            }
+          );
+
+        }, false);
+    alert('did postLogin');
+      };
+
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
