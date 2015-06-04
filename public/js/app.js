@@ -1,99 +1,108 @@
 //this is a test setup
 function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
+  console.log('statusChangeCallback');
+  console.log(response);
+  // The response object is returned with a status field that lets the
+  // app know the current login status of the person.
+  // Full docs on the response object can be found in the documentation
+  // for FB.getLoginStatus().
 
-    if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-          var uid = response.authResponse.userID;
-          var accessToken = response.authResponse.accessToken;
-          alert('ok user is connected will now do postLogin');
-          postLogin();
+  if (response.status === 'connected') {
+    // Logged into your app and Facebook.
+      var uid = response.authResponse.userID;
+      var accessToken = response.authResponse.accessToken;
+      console.log('ok user is connected will now do postLogin');
+      postLogin('test');
       testAPI();
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
-    } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
-    }
+  } else if (response.status === 'not_authorized') {
+    // The person is logged into Facebook, but not your app.
+    document.getElementById('myProfile').innerHTML = 'Please log ' +
+      'into this app.';
+  } else {
+    // The person is not logged into Facebook, so we're not sure if
+    // they are logged into this app or not.
+    document.getElementById('myProfile').innerHTML = 'Please log ' +
+      'into Facebook.';
   }
+}
 
 //posting
-  var postLogin = function() {
-        //runs the button init
-    alert('staring postLogin');
-        console.log('got to element get');
-        var button = document.getElementById('btnPost'); 
-        console.log('event listener started');
-        
-        
-        button.addEventListener('click', function() {
-      alert('clicked btn');
-          console.log('clicked button');
-          FB.api('/me/post', 'post', {
-              message: 'test'
-            },
-            function(response) {
-        alert('postLogin FB.api post reponse received', 'response:', response);
-              if (!response && !error.response) {
-                console.log('an error occured');
-              } else {
-                console.log('connected and post was made');
-              }
-            }
-          );
+var postStuff = function(stuff=null) {
+    console.log('got to element get');
+    var status = document.getElementById('btnPost');
+    console.log('event listener started');
 
-        }, false);
-    alert('did postLogin');
-      };
+    status.addEventListener('click', function() {
+      if (stuff == null){
+        msg = document.getElementById('story').value
+      } else {
+        msg = stuff
+      }
 
-  function checkLoginState() {
+      console.log('clicked button');
+      FB.api('/me/post', 'post', {
+          message: msg
+        },
+        function(response) {
+          if (!response && !error.response) {
+            console.log('an error occured');
+          } else {
+            console.log('connected and post was made');
+          }
+        }
+      );
+    }, false);
+  };
+
+function checkLoginState() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
   }
 
-  window.fbAsyncInit = function() {
+window.fbAsyncInit = function() {
   FB.init({
     appId      : '1432144570413455',
     cookie     : false,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.3' // use version 2.3
-  });
+    });
 
-  //check the login
- FB.getLoginStatus(function(response) {
-    statusChangeCallback(response); }
-   );
-
+    //check the login
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response); }
+     );
   };
 
-  // Load the SDK asynchronously
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "js/fbsdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
+// Load the SDK asynchronously
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "js/fbsdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
 
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me?fields=name,picture', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        '<img src="' + response.picture.data.url + '"> ' + 'You\'re logged in as ' + response.name;
-    });
+// Here we run a very simple test of the Graph API after login is
+// successful.  See statusChangeCallback() for when this call is made.
+function testAPI() {
+  console.log('Welcome! Fetching your information.... ');
+  FB.api('/me?fields=name,picture', function(response) {
+    console.log('Successful login for: ' + response.name);
+    document.getElementById('myProfile').innerHTML =
+      '<img src="' + response.picture.data.url + '"> ' + 'You\'re logged in as \n' + response.name;
+    displayDiv(true);
+  });
+}
+
+function displayDiv(value) {
+  if (value) {
+    document.getElementById('postStatus').style.display = none
+    document.getElementById('getFeed').style.display = none
   }
-//test
+  else {
+    document.getElementById('postStatus').style.display = block
+    document.getElementById('getFeed').style.display = block
+  }
+}

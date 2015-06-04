@@ -17,14 +17,16 @@
         <h1 data-l10n-id="app_title">Testing...</h1>
         <p data-l10n-id="app_description">Facebook connection test</p>
         <p id="message"></p>
-        <div id="myProfile"></div>
         <div class="fb-login-button" scope="public_profile,email,publish_actions" data-size="large" onclick="checkLoginState();" data-auto-logout-link="true"></div>
-        <button id="btnPost">post</button>
-        <div id="status"></div>
+        <div id="myProfile"></div>
         <hr>
-        <div id="postStatus">
+        <div style="display:none" id="postStatus">
+        <table>
+        <tr><td style="box-sizing: border-box;"><textarea id="story" placeholder="What's on your mind?"></textarea></td></tr>
+        <tr><td><button style="width:7px" id="btnPost">Post</button></td></tr>
+        </table>
         </div>
-        <div id="getFeed">
+        <div style="display:none" id="getFeed">
         </div>
     </body>
 </html>
