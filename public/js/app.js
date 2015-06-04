@@ -9,7 +9,7 @@ function statusChangeCallback(response) {
 
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-       var uid = response.authResponse.userID;
+          var uid = response.authResponse.userID;
           var accessToken = response.authResponse.accessToken;
           alert('ok user is connected will now do postLogin');
           postLogin();
@@ -72,6 +72,7 @@ function statusChangeCallback(response) {
   //check the login
  FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
+    {return_scopes: true,}
   });
 
   };
