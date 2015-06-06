@@ -96,7 +96,7 @@ function testAPI() {
     displayDiv(true);
   });
   //retreive feed (testing not sure it works)
-  Fb.api('/me/feed', function(response) {
+  FB.api('/me/feed', function(response) {
     console.log('showing feed for: ' + response.name);
     document.getElementById('usersFeed').innerHTML =
     likes.filter(stream),comments.filter(stream) ;
