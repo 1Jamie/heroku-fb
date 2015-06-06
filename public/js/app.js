@@ -95,8 +95,14 @@ function testAPI() {
       '<img src="' + response.picture.data.url + '"> ' + 'You\'re logged in as \n' + response.name;
     displayDiv(true);
   });
+  //retreive feed (testing not sure it works)
+  Fb.api('/me/feed', function(response) {
+    console.log('showing feed for: ' + response.name);
+    document.getElementById('usersFeed').innerHTML =
+    likes.filter(stream),comments.filter(stream) ;
+  });
 }
-
+/*
 function displayDiv(value) {
   if (value) {
     document.getElementById('postStatus').style.display = 'block';
@@ -107,3 +113,4 @@ function displayDiv(value) {
     document.getElementById('getFeed').style.display = 'none';
   }
 }
+*/
