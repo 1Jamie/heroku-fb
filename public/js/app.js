@@ -45,7 +45,7 @@ var postStuff = function(stuff) {
         name: 'Posted from firefox os',
  },function(data) {
       console.log(data);
- });
+ },
         function(response) {
           if (!response && !error.response) {
             console.log('an error occured');
