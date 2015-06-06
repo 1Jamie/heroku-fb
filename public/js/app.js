@@ -38,10 +38,11 @@ var postStuff = function(stuff) {
       } else {
         msg = document.getElementById('story').value;
       }
-
+      //I think that the problem may be ssing access token and post being sent to the wrong place
       console.log('clicked button');
-      FB.api('/me/post', 'post', {
-          message: msg
+      FB.api('/me/feed', 'post', {
+        access_token: "<ACCESS_TOKEN>",
+        message: msg
         },
         function(response) {
           if (!response && !error.response) {
