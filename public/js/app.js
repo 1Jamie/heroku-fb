@@ -96,11 +96,10 @@ function testAPI() {
     displayDiv(true);
   });
   //retreive feed (testing not sure it works)
-  FB.api('/me/feed', function(response) {
-    console.log('showing feed for: ' + response.name);
-    document.getElementById('usersFeed').innerHTML =
-    likes.filter(stream),comments.filter(stream) ;
-  });
+  FB.api('me?fields=id,name,posts.limit(25)',function(response){
+    var idDiv=document.getElementById('usersFeed');
+    idDiv.textContent=JSON.stringify(response.data);
+});
 }
 
 function displayDiv(value) {
