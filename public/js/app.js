@@ -99,7 +99,7 @@ function testAPI() {
   FB.api('me?fields=id,name,posts.limit(25)',function(response){
     console.log('fetching feed for: ' + response.name)
     document.getElementById('usersFeed').innerHTML = 
-    JSON.stringify(response.data);
+    JSON.stringify(response.posts.data);
 });
 }
 
