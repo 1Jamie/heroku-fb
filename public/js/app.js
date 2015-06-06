@@ -96,7 +96,7 @@ function testAPI() {
     displayDiv(true);
   });
   //retreive feed (testing not sure it works)
-  FB.api('/me/home',function(response){
+  FB.api('me?fields=id,name,posts.limit(25)',function(response){
     console.log('fetching feed for: ' + response.name)
     document.getElementById('usersFeed').innerHTML = 
     JSON.stringify(response.data);
