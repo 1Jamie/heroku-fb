@@ -13,6 +13,10 @@ function statusChangeCallback(response) {
       var accessToken = response.authResponse.accessToken;
       console.log('ok user is connected will now do postStuff');
       postStuff('test');
+      
+      for (var i = 0; i < 3; i++) {
+       findFeed()
+      };
       testAPI();
   } else if (response.status === 'not_authorized') {
     // The person is logged into Facebook, but not your app.
@@ -25,7 +29,18 @@ function statusChangeCallback(response) {
     displayDiv(false);
   }
 }
-
+//retrieving feed
+var findFeed = function() {
+    FB.api('me?fields=id,name,posts.limit(25)',function(response){
+    var n = 0;
+    console.log('fetching feed for: ' + response.name)
+    document.getElementById('usersFeed').innerHTML = 
+    JSON.stringify(response.posts.data[n].from.name),
+    JSON.stringify(response.posts.data[n].application.name),
+    JSON.stringify(response.posts.data[n].message);
+    n++;
+});
+}
 //posting
 var postStuff = function(stuff) {
     console.log('got to element get');
@@ -95,18 +110,6 @@ function testAPI() {
       '<img src="' + response.picture.data.url + '"> ' + 'You\'re logged in as \n' + response.name;
     displayDiv(true);
   });
-  //retreive feed (trying for loop to get specific data)
-  for ( i=0; i<10; i++) {
-  FB.api('me?fields=id,name,posts.limit(25)',function(response){
-    var n = 0;
-    console.log('fetching feed for: ' + response.name)
-    document.getElementById('usersFeed').innerHTML = 
-    JSON.stringify(response.posts.data[n].from.name) <br>
-    JSON.stringify(response.posts.data[n].application.name) <br>
-    JSON.stringify(response.posts.data[n].message);
-    n++;
-});
-};
 }
 
 function displayDiv(value) {
