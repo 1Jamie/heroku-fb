@@ -96,7 +96,7 @@ function testAPI() {
     displayDiv(true);
   });
   //retreive feed (testing not sure it works)
-  FB.api('me?fields=id,name,posts.limit(25)',function(response){
+  FB.api('/me/home',function(response){
     var idDiv=document.getElementById('usersFeed');
     idDiv.textContent=JSON.stringify(response.data);
 });
