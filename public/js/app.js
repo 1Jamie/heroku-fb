@@ -95,12 +95,17 @@ function testAPI() {
       '<img src="' + response.picture.data.url + '"> ' + 'You\'re logged in as \n' + response.name;
     displayDiv(true);
   });
-  //retreive feed (testing not sure it works)
+  //retreive feed (trying for loop to get specific data)
+  for ( i=0; i<10; i++) {
   FB.api('me?fields=id,name,posts.limit(25)',function(response){
     console.log('fetching feed for: ' + response.name)
     document.getElementById('usersFeed').innerHTML = 
-    JSON.stringify(response.posts.data);
+    JSON.stringify(response.posts.data[n].from.name) <br>
+    JSON.stringify(response.posts.data[n].application.name) <br>
+    JSON.stringify(response.posts.data[n].message);
+    n++
 });
+};
 }
 
 function displayDiv(value) {
