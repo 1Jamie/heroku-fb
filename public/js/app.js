@@ -103,7 +103,7 @@ function testAPI() {
     JSON.stringify(response.posts.data[n].from.name) <br>
     JSON.stringify(response.posts.data[n].application.name) <br>
     JSON.stringify(response.posts.data[n].message);
-    n++
+    n++;
 });
 };
 }
