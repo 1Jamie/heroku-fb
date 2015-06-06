@@ -1,4 +1,4 @@
-//this is a test setup
+//this is current setup
 function statusChangeCallback(response) {
   console.log('statusChangeCallback');
   console.log(response);
