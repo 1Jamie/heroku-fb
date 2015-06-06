@@ -97,8 +97,9 @@ function testAPI() {
   });
   //retreive feed (testing not sure it works)
   FB.api('/me/home',function(response){
-    var idDiv=document.getElementById('usersFeed');
-    idDiv.textContent=JSON.stringify(response.data);
+    console.log('fetching feed for: ' + response.name)
+    document.getElementById('usersFeed').innerHTML = 
+    JSON.stringify(response.data);
 });
 }
 
