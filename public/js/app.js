@@ -102,7 +102,7 @@ function testAPI() {
     likes.filter(stream),comments.filter(stream) ;
   });
 }
-/*
+
 function displayDiv(value) {
   if (value) {
     document.getElementById('postStatus').style.display = 'block';
@@ -113,4 +113,3 @@ function displayDiv(value) {
     document.getElementById('getFeed').style.display = 'none';
   }
 }
-*/

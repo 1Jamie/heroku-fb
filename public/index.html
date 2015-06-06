@@ -17,7 +17,7 @@
         <h1 data-l10n-id="app_title">Testing...</h1>
         <p data-l10n-id="app_description">Facebook connection test</p>
         <p id="message"></p>
-        <div class="fb-login-button" scope="public_profile,email,publish_actions" data-size="large" onclick="checkLoginState();" data-auto-logout-link="true"></div>
+        <div class="fb-login-button" scope="public_profile,email,publish_actions,user_posts" data-size="large" onclick="checkLoginState();" data-auto-logout-link="true"></div>
         <div id="myProfile"></div>
         <hr>
         <div style="display:none" id="postStatus">
@@ -25,6 +25,8 @@
         <tr><td style="box-sizing: border-box;"><textarea id="story" placeholder="What's on your mind?"></textarea></td></tr>
         <tr><td><button id="btnPost">Post</button></td></tr>
         </table>
+        </div>
+        <div id="usersFeed">
         </div>
         <div style="display:none" id="getFeed">
         </div>
