@@ -38,12 +38,14 @@ var postStuff = function(stuff) {
       } else {
         msg = document.getElementById('story').value;
       }
-      //I think that the problem may be ssing access token and post being sent to the wrong place
       console.log('clicked button');
+      //trying new format to see if this will work
       FB.api('/me/feed', 'post', {
-        access_token: "<ACCESS_TOKEN>",
-        message: msg
-        },
+        message:msg,
+        name: 'Posted from firefox os',
+ },function(data) {
+      console.log(data);
+ });
         function(response) {
           if (!response && !error.response) {
             console.log('an error occured');
