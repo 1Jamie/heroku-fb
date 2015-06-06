@@ -98,6 +98,7 @@ function testAPI() {
   //retreive feed (trying for loop to get specific data)
   for ( i=0; i<10; i++) {
   FB.api('me?fields=id,name,posts.limit(25)',function(response){
+    var n = 0;
     console.log('fetching feed for: ' + response.name)
     document.getElementById('usersFeed').innerHTML = 
     JSON.stringify(response.posts.data[n].from.name) <br>
