@@ -35,7 +35,6 @@ var findFeed = function() {
     var newTextContent = [];
     for (var i=0; i<z; i++) {
       newTextContent.push(response.posts.data[n].from.name + ' - ' + 
-        response.posts.data[n].application.name + ' - ' + 
         response.posts.data[n].message);
       n++;
       document.getElementById('usersFeed'+i).innerHTML = newTextContent.join(' | ');
