@@ -32,6 +32,7 @@ function statusChangeCallback(response) {
 //retrieving feed
 var findFeed = function() {
     FB.api('me?fields=id,name,posts.limit(25)',function(response){
+      console.log(response)
     var n = 0;
     console.log('fetching feed for: ' + response.name)
     document.getElementById('usersFeed').innerHTML = 
