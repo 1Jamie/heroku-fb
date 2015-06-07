@@ -38,7 +38,6 @@ var findFeed = function() {
         response.posts.data[i].message);
       document.getElementById('usersFeed'+i).innerHTML = newTextContent.join(' | ');
     }
-    n = 0;
   } 
   );
 };
