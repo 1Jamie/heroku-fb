@@ -31,10 +31,11 @@ function statusChangeCallback(response) {
 }
 //retrieving feed
 var findFeed = function() {
-  FB.api('me?fields=id,name,posts.limit(25)',function(response){
+  FB.api('me?fields=id,name,posts,story,application.limit(25)',function(response){
     console.log(response); 
-    var newTextContent = [];
+    
     for (var i=0; i<z; i++) {
+      var newTextContent = [];
       newTextContent.push(response.posts.data[i].from.name + ' - ' + 
         response.posts.data[i].message);
       document.getElementById('usersFeed'+i).innerHTML = newTextContent;
