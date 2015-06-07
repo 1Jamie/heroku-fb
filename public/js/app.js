@@ -9,12 +9,12 @@ function statusChangeCallback(response) {
 
   if (response.status === 'connected') {
     // Logged into your app and Facebook.
-      var uid = response.authResponse.userID;
-      var accessToken = response.authResponse.accessToken;
-      console.log('ok user is connected will now do postStuff');
-      postStuff('test');
-      findFeed();
-      testAPI();
+    var uid = response.authResponse.userID;
+    var accessToken = response.authResponse.accessToken;
+    console.log('ok user is connected will now do postStuff');
+    postStuff('test');
+    findFeed();
+    testAPI();
   } else if (response.status === 'not_authorized') {
     // The person is logged into Facebook, but not your app.
     document.getElementById('myProfile').innerHTML = 'Please log into this app.';
@@ -28,56 +28,54 @@ function statusChangeCallback(response) {
 }
 //retrieving feed
 var findFeed = function() {
-    FB.api('me?fields=id,name,posts.limit(25)',function(response){
-      console.log(response); // ok im going to show you how to explor an object. pplz get this into simulator
-      var newTextContent = [];
-      for (var i=0; i<3; i++) {
-        var n = 0;
-        newTextContent.push(response.posts.data[n].from.name + ' - ' + response.posts.data[n].application.name + ' - ' + response.posts.data[n].message);
-    n++;
+  FB.api('me?fields=id,name,posts.limit(25)',function(response){
+    console.log(response); 
+    var newTextContent = [];
+    for (var i=0; i<3; i++) {
+      newTextContent.push(response.posts.data[i].from.name + ' - ' + 
+        response.posts.data[i].application.name + ' - ' + 
+        response.posts.data[i].message);
+      document.getElementById('usersFeed'+i).innerHTML = newTextContent.join(' | ');
     }
-    var z = 0;
-    document.getElementById('usersFeed'+z).innerHTML = newTextContent.join(' | ');
-    z++;
-    } 
-);
+  } 
+  );
 };
 //posting
 var postStuff = function(stuff) {
-    console.log('got to element get');
-    var status = document.getElementById('btnPost');
-    console.log('event listener started');
+  console.log('got to element get');
+  var status = document.getElementById('btnPost');
+  console.log('event listener started');
 
-    status.addEventListener('click', function() {
-      if (stuff){
-        msg = stuff;
-      } else {
-        msg = document.getElementById('story').value;
-      }
-      console.log('clicked button');
+  status.addEventListener('click', function() {
+    if (stuff){
+      msg = stuff;
+    } else {
+      msg = document.getElementById('story').value;
+    }
+    console.log('clicked button');
       //trying new format to see if this will work
       FB.api('/me/feed', 'post', {
         message:msg,
         name: 'Posted from firefox os',
- },function(data) {
-      console.log(data);
- },
-        function(response) {
-          if (!response && !error.response) {
-            console.log('an error occured');
-          } else {
-            console.log('connected and post was made');
-          }
+      },function(data) {
+        console.log(data);
+      },
+      function(response) {
+        if (!response && !error.response) {
+          console.log('an error occured');
+        } else {
+          console.log('connected and post was made');
         }
+      }
       );
     }, false);
-  };
+};
 
 function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
 //testing to see if cookie : true works better for performance
 window.fbAsyncInit = function() {
   FB.init({
@@ -86,7 +84,7 @@ window.fbAsyncInit = function() {
                         // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.3' // use version 2.3
-    });
+  });
 
     //check the login
     checkLoginState();
@@ -108,7 +106,7 @@ function testAPI() {
   FB.api('/me?fields=name,picture', function(response) {
     console.log('Successful login for: ' + response.name);
     document.getElementById('myProfile').innerHTML =
-      '<img src="' + response.picture.data.url + '"> ' + 'You\'re logged in as \n' + response.name;
+    '<img src="' + response.picture.data.url + '"> ' + 'You\'re logged in as \n' + response.name;
     displayDiv(true);
   });
 }
