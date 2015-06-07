@@ -29,19 +29,30 @@ function statusChangeCallback(response) {
     displayDiv(false);
   }
 }
+//makeing divs required for feed and getting more of it
+var makeFeedDivs = function() { 
+  var newDiv = document.createElement("div"); 
+  var setDivID = 'usersFeed' + i;
+  newDiv.setAttribute('id',setDivID);
+
+  // add the newly created element and its content into the DOM 
+  var currentDiv = document.getElementById("more"); 
+  document.body.insertBefore(newDiv, currentDiv); 
+};
 //retrieving feed
 var findFeed = function() {
   FB.api('me/home?fields=name,posts,message,from',function(response){
     console.log(response); 
     
     for (var i=0; i<z; i++) {
+      makeFeedDivs();
       var newTextContent = [];
       if (response.error) {
         console.log('Error - ' + response.error.message);
         return;
       }   
       else{ 
-        console.log(response)
+        console.log(response);
       newTextContent.push(response.data[i].from.name + ' - ' + 
         response.data[i].message);
       document.getElementById('usersFeed'+i).innerHTML = newTextContent;
