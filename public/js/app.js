@@ -31,7 +31,7 @@ function statusChangeCallback(response) {
 }
 //retrieving feed
 var findFeed = function() {
-  FB.api('me?fields=id,name,posts,story,application.limit(25)',function(response){
+  FB.api('me/home?fields=id,name,posts,message,story,photos,application',function(response){
     console.log(response); 
     
     for (var i=0; i<z; i++) {
