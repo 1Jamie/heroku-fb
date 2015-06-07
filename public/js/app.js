@@ -29,12 +29,14 @@ function statusChangeCallback(response) {
 //retrieving feed
 var findFeed = function() {
     FB.api('me?fields=id,name,posts.limit(25)',function(response){
-      console.log(response);
+      console.log(response); // ok im going to show you how to explor an object. pplz get this into simulator
       var newTextContent = [];
-      for (var n=0; n<response.posts.data.length; n++) {
+      for (var i=0; i<1; i++) {
+        var n = 0;
         newTextContent.push(response.posts.data[n].from.name + ' - ' + response.posts.data[n].application.name + ' - ' + response.posts.data[n].message);
+    n++;
     }
-    document.getElementById('usersFeed').textContent = newTextContent.join(' | ');
+    document.getElementById('usersFeed').innerHTML = newTextContent.join(' | ');
     } 
 );
 };
