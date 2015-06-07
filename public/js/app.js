@@ -32,7 +32,7 @@ var findFeed = function() {
       console.log(response);
       var newTextContent = [];
       for (var n=0; n<response.posts.data.length; n++) {
-        newTextContent.push(response.posts.data[n].from.name + ' - ' + responseJSON.posts.data[n].application.name + ' - ' + responseJSON.posts.data[n].message);
+        newTextContent.push(response.posts.data[n].from.name + ' - ' + response.posts.data[n].application.name + ' - ' + response.posts.data[n].message);
     }
     document.getElementById('usersFeed').textContent = newTextContent.join(' | ');
     } 
