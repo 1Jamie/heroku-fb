@@ -36,9 +36,15 @@ var findFeed = function() {
     
     for (var i=0; i<z; i++) {
       var newTextContent = [];
+      if (response.error) {
+        console.log('Error - ' + response.error.message);
+        return;
+      }   
+      else{ 
       newTextContent.push(response.data[i].name + ' - ' + 
         response.data[i].message);
       document.getElementById('usersFeed'+i).innerHTML = newTextContent;
+    }
     }
   } 
   );
@@ -51,7 +57,7 @@ var morePosts = function() {
   loadMore.addEventListener('click', function(){
     z=z+3;
     findFeed();
-    });
+  });
 };
 //posting
 var postStuff = function(stuff) {
