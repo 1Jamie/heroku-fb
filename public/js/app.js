@@ -1,4 +1,4 @@
-var n = 0;
+//setting var that is used
 var z = 3;
 //this is current setup
 function statusChangeCallback(response) {
@@ -34,9 +34,8 @@ var findFeed = function() {
     console.log(response); 
     var newTextContent = [];
     for (var i=0; i<z; i++) {
-      newTextContent.push(response.posts.data[n].from.name + ' - ' + 
-        response.posts.data[n].message);
-      n++;
+      newTextContent.push(response.posts.data[i].from.name + ' - ' + 
+        response.posts.data[i].message);
       document.getElementById('usersFeed'+i).innerHTML = newTextContent.join(' | ');
     }
     n = 0;
