@@ -36,7 +36,7 @@ var findFeed = function() {
         newTextContent.push(response.posts.data[n].from.name + ' - ' + response.posts.data[n].application.name + ' - ' + response.posts.data[n].message);
     n++;
     }
-    var z = 0
+    var z = 0;
     document.getElementById('usersFeed'+z).innerHTML = newTextContent.join(' | ');
     z++;
     } 
