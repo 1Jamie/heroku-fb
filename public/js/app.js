@@ -31,7 +31,7 @@ var findFeed = function() {
     FB.api('me?fields=id,name,posts.limit(25)',function(response){
       console.log(response); // ok im going to show you how to explor an object. pplz get this into simulator
       var newTextContent = [];
-      for (var i=0; i<1; i++) {
+      for (var i=0; i<3; i++) {
         var n = 0;
         newTextContent.push(response.posts.data[n].from.name + ' - ' + response.posts.data[n].application.name + ' - ' + response.posts.data[n].message);
     n++;
@@ -55,7 +55,7 @@ var postStuff = function(stuff) {
       console.log('clicked button');
       //trying new format to see if this will work
       FB.api('/me/feed', 'post', {
-        message:msg,
+        message:prompt('whats on your mind'),
         name: 'Posted from firefox os',
  },function(data) {
       console.log(data);
