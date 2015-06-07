@@ -1,5 +1,6 @@
 //setting var that is used
 var z = 3;
+var q = 0;
 //this is current setup
 function statusChangeCallback(response) {
   console.log('statusChangeCallback');
@@ -32,12 +33,13 @@ function statusChangeCallback(response) {
 //makeing divs required for feed and getting more of it
 var makeFeedDivs = function() { 
   var newDiv = document.createElement("div"); 
-  var setDivID = 'usersFeed' + i;
+  var setDivID = 'usersFeed' + q;
   newDiv.setAttribute('id',setDivID);
 
   // add the newly created element and its content into the DOM 
   var currentDiv = document.getElementById("more"); 
   document.body.insertBefore(newDiv, currentDiv); 
+  q++;
 };
 //retrieving feed
 var findFeed = function() {
@@ -58,6 +60,7 @@ var findFeed = function() {
       document.getElementById('usersFeed'+i).innerHTML = newTextContent;
     }
     }
+    q=0;
   } 
   );
 };
