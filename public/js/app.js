@@ -44,6 +44,22 @@ var findFeed = function() {
   } 
   );
 };
+var morePosts = function(loading) {
+  console.log('got button element more');
+  var loadMore = document.getElementById('more');
+  console.log('started listner for more button');
+
+  loadMore.addEventListener('click', function(){
+    z=z+3;
+    if (loading){
+      findFeed();
+    }
+    else {
+      console.log('error loading feed');
+      alert('error getting feed');
+    }
+  });
+};
 //posting
 var postStuff = function(stuff) {
   console.log('got to element get');
