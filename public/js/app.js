@@ -40,6 +40,8 @@ var makeFeedDivs = function() {
   var currentDiv = document.getElementById("more"); 
   document.body.insertBefore(newDiv, currentDiv); 
   q++;
+  var newBreak = document.createElement("br");
+  document.body.insertBefore(newBreak, currentDiv);
 };
 //retrieving feed
 var findFeed = function() {
