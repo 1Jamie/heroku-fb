@@ -37,26 +37,20 @@ var findFeed = function() {
     for (var i=0; i<z; i++) {
       newTextContent.push(response.posts.data[i].from.name + ' - ' + 
         response.posts.data[i].message);
-      document.getElementById('usersFeed'+i).innerHTML = newTextContent.join(' | ');
+      document.getElementById('usersFeed'+i).innerHTML = newTextContent;
     }
   } 
   );
 };
-var morePosts = function(loading) {
+var morePosts = function() {
   console.log('got button element more');
   var loadMore = document.getElementById('more');
   console.log('started listner for more button');
 
   loadMore.addEventListener('click', function(){
     z=z+3;
-    if (loading){
-      findFeed();
-    }
-    else {
-      console.log('error loading feed');
-      alert('error getting feed');
-    }
-  });
+    findFeed();
+    });
 };
 //posting
 var postStuff = function(stuff) {
@@ -82,6 +76,7 @@ var postStuff = function(stuff) {
         if (!response && !error.response) {
           console.log('an error occured');
         } else {
+          setInterval(findFeed(),1000);
           console.log('connected and post was made');
         }
       }
