@@ -36,7 +36,9 @@ var findFeed = function() {
         newTextContent.push(response.posts.data[n].from.name + ' - ' + response.posts.data[n].application.name + ' - ' + response.posts.data[n].message);
     n++;
     }
-    document.getElementById('usersFeed').innerHTML = newTextContent.join(' | ');
+    var z = 0
+    document.getElementById('usersFeed'+z).innerHTML = newTextContent.join(' | ');
+    z++;
     } 
 );
 };
@@ -55,7 +57,7 @@ var postStuff = function(stuff) {
       console.log('clicked button');
       //trying new format to see if this will work
       FB.api('/me/feed', 'post', {
-        message:prompt('whats on your mind'),
+        message:msg,
         name: 'Posted from firefox os',
  },function(data) {
       console.log(data);
@@ -76,11 +78,11 @@ function checkLoginState() {
       statusChangeCallback(response);
     });
   }
-
+//testing to see if cookie : true works better for performance
 window.fbAsyncInit = function() {
   FB.init({
     appId      : '1432144570413455',
-    cookie     : false,  // enable cookies to allow the server to access 
+    cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.3' // use version 2.3
