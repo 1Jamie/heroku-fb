@@ -41,6 +41,7 @@ var findFeed = function() {
         return;
       }   
       else{ 
+        console.log(response)
       newTextContent.push(response.data[i].name + ' - ' + 
         response.data[i].message);
       document.getElementById('usersFeed'+i).innerHTML = newTextContent;
