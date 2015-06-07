@@ -73,7 +73,7 @@ var postStuff = function(stuff) {
     console.log('clicked button');
       //trying new format to see if this will work
       FB.api('/me/feed', 'post', {
-        message:msg,
+        message:prompt('whats on your mind'),
         name: 'Posted from firefox os',
       },function(data) {
         console.log(data);
