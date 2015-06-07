@@ -31,13 +31,13 @@ function statusChangeCallback(response) {
 }
 //retrieving feed
 var findFeed = function() {
-  FB.api('me/home?fields=id,name,posts,message,story,photos,application',function(response){
+  FB.api('me/home?fields=name,posts,message',function(response){
     console.log(response); 
     
     for (var i=0; i<z; i++) {
       var newTextContent = [];
-      newTextContent.push(response.posts.data[i].from.name + ' - ' + 
-        response.posts.data[i].message);
+      newTextContent.push(response.data[i].name + ' - ' + 
+        response.data[i].message);
       document.getElementById('usersFeed'+i).innerHTML = newTextContent;
     }
   } 
