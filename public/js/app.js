@@ -1,3 +1,5 @@
+var n = 0;
+var z = 3;
 //this is current setup
 function statusChangeCallback(response) {
   console.log('statusChangeCallback');
@@ -31,12 +33,14 @@ var findFeed = function() {
   FB.api('me?fields=id,name,posts.limit(25)',function(response){
     console.log(response); 
     var newTextContent = [];
-    for (var i=0; i<3; i++) {
-      newTextContent.push(response.posts.data[i].from.name + ' - ' + 
-        response.posts.data[i].application.name + ' - ' + 
-        response.posts.data[i].message);
+    for (var i=0; i<z; i++) {
+      newTextContent.push(response.posts.data[n].from.name + ' - ' + 
+        response.posts.data[n].application.name + ' - ' + 
+        response.posts.data[n].message);
+      n++;
       document.getElementById('usersFeed'+i).innerHTML = newTextContent.join(' | ');
     }
+    n = 0;
   } 
   );
 };
