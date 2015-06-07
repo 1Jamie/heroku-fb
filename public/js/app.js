@@ -13,10 +13,7 @@ function statusChangeCallback(response) {
       var accessToken = response.authResponse.accessToken;
       console.log('ok user is connected will now do postStuff');
       postStuff('test');
-      
-      for (var i = 0; i < 3; i++) {
-       findFeed()
-      };
+      findFeed();
       testAPI();
   } else if (response.status === 'not_authorized') {
     // The person is logged into Facebook, but not your app.
@@ -31,17 +28,15 @@ function statusChangeCallback(response) {
 }
 //retrieving feed
 var findFeed = function() {
-    FB.api('me?fields=id,name,posts.limit(25)',function(response){
-      console.log(response)
-    var n = 0;
-    console.log('fetching feed for: ' + response.name)
-    document.getElementById('usersFeed').innerHTML = 
-    JSON.stringify(response.posts.data[n].from.name),
-    JSON.stringify(response.posts.data[n].application.name),
-    JSON.stringify(response.posts.data[n].message);
-    n++;
-});
-}
+       //retrieving feed
+    var findFeed = function() {
+      var newTextContent = [];
+    for (var n=0; n<response.posts.data.length; n++) {
+        newTextContent.push(response.posts.data[n].from.name + ' - ' + responseJSON.posts.data[n].application.name + ' - ' + responseJSON.posts.data[n].message);
+    }
+    document.getElementById('usersFeed').textContent = newTextContent.join(' | ');
+    } ;
+};
 //posting
 var postStuff = function(stuff) {
     console.log('got to element get');
