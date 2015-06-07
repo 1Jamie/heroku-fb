@@ -28,14 +28,16 @@ function statusChangeCallback(response) {
 }
 //retrieving feed
 var findFeed = function() {
-       //retrieving feed
-    var findFeed = function() {
+    FB.api('me?fields=id,name,posts.limit(25)',function(response){
+      console.log('fetching feed for: ' response.name)
+      console.log(response);
       var newTextContent = [];
-    for (var n=0; n<response.posts.data.length; n++) {
+      for (var n=0; n<response.posts.data.length; n++) {
         newTextContent.push(response.posts.data[n].from.name + ' - ' + responseJSON.posts.data[n].application.name + ' - ' + responseJSON.posts.data[n].message);
     }
     document.getElementById('usersFeed').textContent = newTextContent.join(' | ');
-    } ;
+    } 
+);
 };
 //posting
 var postStuff = function(stuff) {
