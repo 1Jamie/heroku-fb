@@ -2,6 +2,7 @@
 var q = 0;
 var z = 0;
 //this is current setup
+function (){
 FB.login(function(response) {
   if (response.status === 'connected') {
     // Logged into your app and Facebook.
@@ -13,6 +14,7 @@ FB.login(function(response) {
     // they are logged into this app or not.
   }
 }{scope: 'public_profile,email,publish_actions,user_posts,read_stream'});
+};
 function statusChangeCallback(response) {
   console.log('statusChangeCallback');
   console.log(response);
