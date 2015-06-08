@@ -1,6 +1,7 @@
 //setting var that is used
 var z = 3;
 var q = 0;
+var n = 0;
 //this is current setup
 function statusChangeCallback(response) {
   console.log('statusChangeCallback');
@@ -56,8 +57,8 @@ var findFeed = function() {
       }   
       else{ 
         console.log(response);
-      newTextContent.push(response.data[i].from.name + ' - ' + 
-        response.data[i].message);
+      newTextContent.push(response.data[n].from.name + ' - ' + 
+        response.data[n].message);
       document.getElementById('usersFeed'+i).innerHTML = newTextContent;
     }
     }
