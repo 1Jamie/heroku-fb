@@ -161,6 +161,7 @@ window.fbAsyncInit = function() {
   loggingIn();
     //check the login
     checkLoginState();
+    refresh();
   };
 
 // Load the SDK asynchronously
