@@ -1,6 +1,6 @@
-//setting var that is used
-var z = 3;
+//setting var(s) that are used
 var q = 0;
+var z = 0;
 //this is current setup
 function statusChangeCallback(response) {
   console.log('statusChangeCallback');
@@ -35,7 +35,10 @@ var makeFeedDivs = function() {
   var newDiv = document.createElement("div"); 
   var setDivID = 'usersFeed' + q;
   newDiv.setAttribute('id',setDivID);
-  newDiv.style.paddingTop = "10px";
+  newDiv.style.paddingTop = "15px";
+  newDiv.style.background = "#f59335";
+  newDiv.style.borderColor = "#4a6ea9";
+  newDiv.style.border = "thick solid";
 
   // add the newly created element and its content into the DOM 
   var currentDiv = document.getElementById("more"); 
@@ -47,7 +50,7 @@ var findFeed = function() {
   FB.api('me/home?fields=name,posts,message,from',function(response){
     console.log(response); 
     
-    for (var i=0; i<z; i++) {
+    for (var i=0; i<3; i++) {
       makeFeedDivs();
       var newTextContent = [];
       if (response.error) {
@@ -56,9 +59,10 @@ var findFeed = function() {
       }   
       else{ 
         console.log(response);
-      newTextContent.push(response.data[i].from.name + ' - ' + 
-        response.data[i].message);
-      document.getElementById('usersFeed'+i).innerHTML = newTextContent;
+      newTextContent.push(response.data[z].from.name + ' - ' + 
+        response.data[z].message);
+      document.getElementById('usersFeed'+z).innerHTML = newTextContent;
+      z++
     }
     }
   } 
@@ -70,7 +74,6 @@ var morePosts = function() {
   console.log('started listner for more button');
 
   loadMore.addEventListener('click', function(){
-    z=z+3;
     findFeed();
   });
 };
