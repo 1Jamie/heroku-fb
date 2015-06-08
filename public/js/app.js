@@ -43,7 +43,7 @@ var makeFeedDivs = function() {
   var currentDiv = document.getElementById("more"); 
   document.body.insertBefore(newDiv, currentDiv); 
   //add a break so it looks nice with a space between them
-  var newBreak = doccument.createElement("br");
+  var newBreak = document.createElement("br");
   document.body.insertBefore(newBreak, currentDiv);
   q++;
 };
