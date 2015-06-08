@@ -30,6 +30,21 @@ function statusChangeCallback(response) {
     displayDiv(false);
   }
 }
+// setting up login
+var loggingIn = function () {
+  FB.login(function(response) {
+    console.log(response)
+  if (response.status === 'connected') {
+    // Logged into your app and Facebook.
+  } else if (response.status === 'not_authorized') {
+    // The person is logged into Facebook, but not your app.
+  } else {
+    console.log('user needs to sign into facebook')
+    // The person is not logged into Facebook, so we're not sure if
+    // they are logged into this app or not.
+  }
+});
+};
 //makeing divs required for feed and getting more of it
 var makeFeedDivs = function() { 
   var newDiv = document.createElement("div"); 
@@ -118,21 +133,6 @@ var postStuff = function(stuff) {
 function checkLoginState() {
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
-    if (!response && !error.response)
-      function () {
-        FB.login(function(response) {
-  if (response.status === 'connected') {
-    // Logged into your app and Facebook.
-  } else if (response.status === 'not_authorized') {
-    // The person is logged into Facebook, but not your app.
-  } else {
-    console.log('user needs to sign into facebook')
-    // The person is not logged into Facebook, so we're not sure if
-    // they are logged into this app or not.
-  }
-});
-
-      }
   });
 }
 //testing to see if cookie : true works better for performance
@@ -144,7 +144,8 @@ window.fbAsyncInit = function() {
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.3' // use version 2.3
   });
-
+  //logging in
+  loggingin()
     //check the login
     checkLoginState();
   };
