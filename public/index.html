@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        
-        <meta charset="utf-8">
-        <title>test fb setup</title>
-        <meta name="description" content="A fb connection test">
+<head>
+    <style>
+    body {
+        background-image: url("background.jpg");
+        background-repeat: no-repeat;
+    }
+    </style>
+    <meta charset="utf-8">
+    <title>test fb setup</title>
+    <meta name="description" content="A fb connection test">
 
-        <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="css/app.css">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/app.css">
 
-        <script type="text/javascript" src="js/app.js" defer></script>
+    <script type="text/javascript" src="js/app.js" defer></script>
 
-        <link rel="prefetch" type="application/l10n" href="data/locales.ini" />
-        <script type="text/javascript" src="js/libs/l10n.js" defer></script>
-    </head>
-    <body backround="/images/background.jpg">
-        <h1 data-l10n-id="app_title">Testing...</h1>
-        <p data-l10n-id="app_description">Facebook connection test</p>
-        <p id="message"></p>
-        <div class="fb-login-button" scope="public_profile,email,publish_actions,user_posts,read_stream" data-size="large" onclick="checkLoginState();" data-auto-logout-link="true"></div>
-        <div id="myProfile"></div>
-        <hr>
-        <div style="display:none" id="postStatus">
+    <link rel="prefetch" type="application/l10n" href="data/locales.ini" />
+    <script type="text/javascript" src="js/libs/l10n.js" defer></script>
+</head>
+<body>
+    <h1 data-l10n-id="app_title">Testing...</h1>
+    <p data-l10n-id="app_description">Facebook connection test</p>
+    <p id="message"></p>
+    <div class="fb-login-button" scope="public_profile,email,publish_actions,user_posts,read_stream" data-size="large" onclick="checkLoginState();" data-auto-logout-link="true"></div>
+    <div id="myProfile"></div>
+    <hr>
+    <div style="display:none" id="postStatus">
         <table>
-        <tr><td style="box-sizing: border-box;"><textarea id="story" placeholder="What's on your mind?"></textarea></td></tr>
-        <tr><td><button id="btnPost">Post</button></td></tr>
+            <tr><td style="box-sizing: border-box;"><textarea id="story" placeholder="What's on your mind?"></textarea></td></tr>
+            <tr><td><button id="btnPost">Post</button></td></tr>
         </table>
-        </div>
-        <br>
-        <div style="display:none" id="getFeed">
-        </div>
-        <br>
-        <button id="more">load more</button>
-    </body>
+    </div>
+    <br>
+    <div style="display:none" id="getFeed">
+    </div>
+    <br>
+    <button id="more">load more</button>
+</body>
 </html>
