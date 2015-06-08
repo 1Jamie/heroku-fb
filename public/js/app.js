@@ -52,10 +52,10 @@ var makeFeedDivs = function() {
   newDiv.setAttribute('id',setDivID);
   newDiv.style.paddingTop = "6px";
   newDiv.style.paddingBottom = "8px";
-  newDiv.style.paddingLeft = "7px";
+  newDiv.style.paddingLeft = "9px";
   newDiv.style.background = "#D0D0D0";
   newDiv.style.border = "solid #4a6ea9";
-  newDiv.style.borderRadius = "15px 50px 30px";
+  newDiv.style.borderRadius = "15px";
 
   // add the newly created element and its content into the DOM 
   var currentDiv = document.getElementById("more"); 
