@@ -79,8 +79,8 @@ var findFeed = function() {
       }   
       else{ 
         console.log(response);
-      newTextContent.push(<p style='color:#002364'>response.data[z].from.name</p>
-        <p>response.data[z].message)</p>;
+      newTextContent.push(response.data[z].from.name + ' - ' + '<br>' +
+        response.data[z].message);
       document.getElementById('usersFeed'+z).innerHTML = newTextContent;
       z++;
     }
