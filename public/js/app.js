@@ -33,13 +33,13 @@ function statusChangeCallback(response) {
 // setting up login
 var loggingIn = function () {
   FB.login(function(response) {
-    console.log(response)
+    console.log(response);
   if (response.status === 'connected') {
     // Logged into your app and Facebook.
   } else if (response.status === 'not_authorized') {
     // The person is logged into Facebook, but not your app.
   } else {
-    console.log('user needs to sign into facebook')
+    console.log('user needs to sign into facebook');
     // The person is not logged into Facebook, so we're not sure if
     // they are logged into this app or not.
   }
@@ -145,7 +145,7 @@ window.fbAsyncInit = function() {
     version    : 'v2.3' // use version 2.3
   });
   //logging in
-  loggingin()
+  loggingIn();
     //check the login
     checkLoginState();
   };
