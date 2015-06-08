@@ -15,7 +15,7 @@ function statusChangeCallback(response) {
     var uid = response.authResponse.userID;
     var accessToken = response.authResponse.accessToken;
     console.log('ok user is connected will now do postStuff');
-    postStuff('test');
+    postStuff();
     findFeed();
     testAPI();
     morePosts();
