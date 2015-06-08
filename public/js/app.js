@@ -30,6 +30,15 @@ function statusChangeCallback(response) {
     displayDiv(false);
   }
 }
+//setting up the refresh button
+var refresh = function() {
+  var fresh = window.getElementById("refreshBtn");
+  console.log("got refreshBtn element");
+  status.addEventListener{"click", function () {
+    location.reload();
+  }
+};
+}
 // setting up login
 var loggingIn = function () {
   FB.login(function(response) {
