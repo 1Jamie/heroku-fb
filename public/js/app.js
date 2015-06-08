@@ -35,7 +35,9 @@ var makeFeedDivs = function() {
   var newDiv = document.createElement("div"); 
   var setDivID = 'usersFeed' + q;
   newDiv.setAttribute('id',setDivID);
-  newDiv.style.paddingTop = "15px";
+  newDiv.style.paddingTop = "7px";
+  newDiv.style.paddingBottom = "7px";
+  newDiv.style.paddingLeft = "6px";
   newDiv.style.background = "#f59335";
   newDiv.style.border = "solid #4a6ea9";
   newDiv.style.borderRadius = "15px 50px 30px";
