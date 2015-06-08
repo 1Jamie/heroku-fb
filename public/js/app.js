@@ -35,10 +35,10 @@ function statusChangeCallback(response) {
 //setting up the refresh button
 var refresh = function() {
   console.log('got refreshBtn element');
-  var fresh = document.getElementById('refreshBtn');
+  var loading = document.getElementById('refreshBtn');
   console.log('started listner for refresh button');
 
-  fresh.addEventListener('click', function(){
+  loading.addEventListener('click', function(){
     loaction.reload();
   });
 };
