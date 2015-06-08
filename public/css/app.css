@@ -15,6 +15,12 @@ body {
 	background-size: cover;
 
 }
+div p {
+	border-radius: 15px 50px 30px;
+	padding-top: 15px;
+	border-color: solid #4a6ea9;
+	background: #f59335 transparent;
+}
 
 h1 {
 	margin: 0 0 1rem 0;
