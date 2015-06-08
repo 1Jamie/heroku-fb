@@ -2,6 +2,17 @@
 var q = 0;
 var z = 0;
 //this is current setup
+FB.login(function(response) {
+  if (response.status === 'connected') {
+    // Logged into your app and Facebook.
+  } else if (response.status === 'not_authorized') {
+    // The person is logged into Facebook, but not your app.
+  } else {
+    console.log('user needs to sign in')
+    // The person is not logged into Facebook, so we're not sure if
+    // they are logged into this app or not.
+  }
+}{scope: 'public_profile,email,publish_actions,user_posts,read_stream'});
 function statusChangeCallback(response) {
   console.log('statusChangeCallback');
   console.log(response);
@@ -64,7 +75,7 @@ var findFeed = function() {
       }   
       else{ 
         console.log(response);
-      newTextContent.push(response.data[z].from.name + ' - ' + 
+      newTextContent.push(response.data[z].from.name + ' - ' + '<br>' +
         response.data[z].message);
       document.getElementById('usersFeed'+z).innerHTML = newTextContent;
       z++;
