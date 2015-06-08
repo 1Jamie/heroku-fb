@@ -39,7 +39,7 @@ var refresh = function() {
   console.log('started listner for refresh button');
 
   loading.addEventListener('click', function(){
-    loaction.reload();
+    window.location.reload(true);
   });
 };
 
