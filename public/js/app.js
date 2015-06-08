@@ -91,7 +91,7 @@ var postStuff = function(stuff) {
     console.log('clicked button');
       //trying new format to see if this will work
       FB.api('/me/feed', 'post', {
-        message:prompt('whats on your mind'),
+        message:msg,
         name: 'Posted from firefox os',
       },function(data) {
         console.log(data);
@@ -100,8 +100,9 @@ var postStuff = function(stuff) {
         if (!response && !error.response) {
           console.log('an error occured');
         } else {
-          setInterval(findFeed(),1000);
+          setInterval(findFeed(),2000);
           console.log('connected and post was made');
+          console.log(response)
         }
       }
       );
