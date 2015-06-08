@@ -32,17 +32,17 @@ function statusChangeCallback(response) {
 }
 //makeing divs required for feed and getting more of it
 var makeFeedDivs = function() { 
-  var newPost = document.createElement("p"); 
+  var newDiv = document.createElement("div"); 
   var setDivID = 'usersFeed' + q;
-  newPost.setAttribute('id',setDivID);
-  newPost.style.paddingTop = "15px";
-  newPost.style.background = "#f59335 transparent";
-  newPost.style.border = "solid #4a6ea9";
-  newPost.style.borderRadius = "15px 50px 30px";
+  newDiv.setAttribute('id',setDivID);
+  newDiv.style.paddingTop = "15px";
+  newDiv.style.background = "#f59335";
+  newDiv.style.border = "solid #4a6ea9";
+  newDiv.style.borderRadius = "15px 50px 30px";
 
   // add the newly created element and its content into the DOM 
   var currentDiv = document.getElementById("more"); 
-  document.body.insertBefore(newPost, currentDiv); 
+  document.body.insertBefore(newDiv, currentDiv); 
   //add a break so it looks nice with a space between them
   var newBreak = document.createElement("br");
   document.body.insertBefore(newBreak, currentDiv);
