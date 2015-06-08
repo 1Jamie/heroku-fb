@@ -35,13 +35,12 @@ var makeFeedDivs = function() {
   var newDiv = document.createElement("div"); 
   var setDivID = 'usersFeed' + q;
   newDiv.setAttribute('id',setDivID);
+  newDiv.stle.paddingTop = "10px";
 
   // add the newly created element and its content into the DOM 
   var currentDiv = document.getElementById("more"); 
   document.body.insertBefore(newDiv, currentDiv); 
   q++;
-  var newBreak = document.createElement("br");
-  document.body.insertBefore(newBreak, currentDiv);
 };
 //retrieving feed
 var findFeed = function() {
