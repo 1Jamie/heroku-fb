@@ -37,12 +37,14 @@ var makeFeedDivs = function() {
   newDiv.setAttribute('id',setDivID);
   newDiv.style.paddingTop = "15px";
   newDiv.style.background = "#f59335";
-  newDiv.style.borderColor = "#4a6ea9";
-  newDiv.style.border = "thick solid";
+  newDiv.style.border = "solid #4a6ea9";
 
   // add the newly created element and its content into the DOM 
   var currentDiv = document.getElementById("more"); 
   document.body.insertBefore(newDiv, currentDiv); 
+  //add a break so it looks nice with a space between them
+  var newBreak = doccument.createElement("br");
+  document.body.insertBefore(newBreak, currentDiv);
   q++;
 };
 //retrieving feed
@@ -62,7 +64,7 @@ var findFeed = function() {
       newTextContent.push(response.data[z].from.name + ' - ' + 
         response.data[z].message);
       document.getElementById('usersFeed'+z).innerHTML = newTextContent;
-      z++
+      z++;
     }
     }
   } 
