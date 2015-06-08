@@ -53,8 +53,8 @@ var makeFeedDivs = function() {
   newDiv.style.paddingTop = "6px";
   newDiv.style.paddingBottom = "8px";
   newDiv.style.paddingLeft = "7px";
-  newDiv.style.background = "#f59335";
-  newDiv.style.border = "solid #4a6ea9";
+  newDiv.style.background = "#4a6ea9";
+  newDiv.style.border = "solid #f59335";
   newDiv.style.borderRadius = "15px 50px 30px";
 
   // add the newly created element and its content into the DOM 
