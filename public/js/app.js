@@ -16,7 +16,9 @@ var clearPage = function() {
         buttonFeed.textContent = 'Load More';
         buttonRefresh.setAttribute('id', buttonNameRe);
         document.body.appendChild(buttonFeed);
+        console.log('Feed button created');
         document.body.appendChild(buttonRefresh);
+        console.log('refreshBtn created');
     };
     //this is current setup
     function statusChangeCallback(response) {
