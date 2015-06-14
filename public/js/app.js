@@ -9,7 +9,7 @@ var clearPage = function() {
 
 //button creation of the top buttons and the more button
 //for loading more posts
-var startButtons=function () {
+var startButtons = function () {
     var buttonFeed = document.createElement('button');
     var buttonRefresh = document.createElement('button');
     var buttonNameRe = 'refreshBtn';
@@ -119,6 +119,12 @@ var findFeed = function() {
                     response.data[z].message);
                 document.getElementById('usersFeed' + z).innerHTML = newTextContent;
                 z++;
+
+                document.addEventListener('scroll', function (event) {
+                    if (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) {
+                        findFeed();
+                    }
+                });
             }
         }
     });
@@ -131,12 +137,6 @@ var morePosts = function() {
 
     loadMore.addEventListener('click', function() {
         findFeed();
-    });
-
-    document.addEventListener('scroll', function (event) {
-        if (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) {
-            findFeed();
-        }
     });
 };
 
