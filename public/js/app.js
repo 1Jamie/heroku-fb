@@ -34,10 +34,11 @@ var clearPage = function() {
         var uid = response.authResponse.userID;
         var accessToken = response.authResponse.accessToken;
         console.log('ok user is connected will now do postStuff');
+        testAPI();
         postStuff();
         findFeed();
-        testAPI();
         morePosts();
+
     } else if (response.status === 'not_authorized') {
         // The person is logged into Facebook, but not your app.
         document.getElementById('myProfile').innerHTML = 'Please log into this app.';
@@ -76,7 +77,7 @@ var loggingIn = function() {
         }
     });
 };
-//makeing divs required for feed and getting more of it
+//making divs required for feed and getting more of it
 var makeFeedDivs = function() {
     var newDiv = document.createElement("div");
     var setDivID = 'usersFeed' + q;
@@ -120,10 +121,16 @@ var findFeed = function() {
 var morePosts = function() {
     console.log('got button element more');
     var loadMore = document.getElementById('more');
-    console.log('started listner for more button');
+    console.log('started listener for more button');
 
     loadMore.addEventListener('click', function() {
         findFeed();
+    });
+
+    document.addEventListener('scroll', function (event) {
+        if (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) {
+            findFeed();
+        }
     });
 };
 //posting
@@ -151,6 +158,7 @@ var postStuff = function(stuff) {
                 console.log('an error occured');
             } else {
                 setInterval(findFeed(), 2000);
+                document.getElementById('story').value = '';
                 console.log('connected and post was made');
                 console.log(response);
             }
