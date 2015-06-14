@@ -1,54 +1,57 @@
 //setting var(s) that are used
 var q = 0;
 var z = 0;
+
 //seup clear screen for function
 var clearPage = function() {
     document.body.innerHTML = '';
 }
-    //button creation of the top buttons and the more button
-    //for loading more posts
-    var startButtons=function () {
-        var buttonFeed = document.createElement('button');
-        var buttonRefresh = document.createElement('button');
-        var buttonNameRe = 'refreshBtn';
-        var buttonNameFe = 'more';
-        buttonFeed.setAttribute('id', buttonNameFe);
-        buttonFeed.textContent = 'Load More';
-        buttonRefresh.setAttribute('id', buttonNameRe);
-        document.body.appendChild(buttonFeed);
-        console.log('Feed button created');
-        document.body.appendChild(buttonRefresh);
-        console.log('refreshBtn created');
-    };
-    //this is current setup
-    function statusChangeCallback(response) {
-        console.log('statusChangeCallback');
-        console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-    if (response.status === 'connected') {
-        // Logged into your app and Facebook.
-        startButtons();
-        var uid = response.authResponse.userID;
-        var accessToken = response.authResponse.accessToken;
-        console.log('ok user is connected will now do postStuff');
-        testAPI();
-        postStuff();
-        findFeed();
-        morePosts();
 
-    } else if (response.status === 'not_authorized') {
-        // The person is logged into Facebook, but not your app.
-        document.getElementById('myProfile').innerHTML = 'Please log into this app.';
-        displayDiv(false);
-    } else {
-        // The person is not logged into Facebook, so we're not sure if
-        // they are logged into this app or not.
-        document.getElementById('myProfile').innerHTML = 'Please log into Facebook.';
-        displayDiv(false);
-    }
+//button creation of the top buttons and the more button
+//for loading more posts
+var startButtons=function () {
+    var buttonFeed = document.createElement('button');
+    var buttonRefresh = document.createElement('button');
+    var buttonNameRe = 'refreshBtn';
+    var buttonNameFe = 'more';
+    buttonFeed.setAttribute('id', buttonNameFe);
+    buttonFeed.textContent = 'Load More';
+    buttonRefresh.setAttribute('id', buttonNameRe);
+    document.body.appendChild(buttonFeed);
+    console.log('Feed button created');
+    document.body.appendChild(buttonRefresh);
+    console.log('refreshBtn created');
+};
+
+//this is current setup
+function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+// The response object is returned with a status field that lets the
+// app know the current login status of the person.
+// Full docs on the response object can be found in the documentation
+// for FB.getLoginStatus().
+if (response.status === 'connected') {
+    // Logged into your app and Facebook.
+    startButtons();
+    var uid = response.authResponse.userID;
+    var accessToken = response.authResponse.accessToken;
+    console.log('ok user is connected will now do postStuff');
+    testAPI();
+    postStuff();
+    findFeed();
+    morePosts();
+
+} else if (response.status === 'not_authorized') {
+    // The person is logged into Facebook, but not your app.
+    document.getElementById('myProfile').innerHTML = 'Please log into this app.';
+    displayDiv(false);
+} else {
+    // The person is not logged into Facebook, so we're not sure if
+    // they are logged into this app or not.
+    document.getElementById('myProfile').innerHTML = 'Please log into Facebook.';
+    displayDiv(false);
+}
 }
 
 //setting up the refresh button
@@ -77,6 +80,7 @@ var loggingIn = function() {
         }
     });
 };
+
 //making divs required for feed and getting more of it
 var makeFeedDivs = function() {
     var newDiv = document.createElement("div");
@@ -97,6 +101,7 @@ var makeFeedDivs = function() {
     document.body.insertBefore(newBreak, currentDiv);
     q++;
 };
+
 //retrieving feed from facebook
 var findFeed = function() {
     FB.api('me/home?fields=name,posts,message,from', function(response) {
@@ -118,6 +123,7 @@ var findFeed = function() {
         }
     });
 };
+
 var morePosts = function() {
     console.log('got button element more');
     var loadMore = document.getElementById('more');
@@ -133,6 +139,7 @@ var morePosts = function() {
         }
     });
 };
+
 //posting
 var postStuff = function(stuff) {
     console.log('got to element get');
