@@ -2,7 +2,7 @@
 var q = 0;
 var z = 0;
 
-//seup clear screen for function
+//setup clear screen for function
 var clearPage = function() {
     document.body.innerHTML = '';
 }
@@ -12,11 +12,10 @@ var clearPage = function() {
 var startButtons = function () {
     var buttonFeed = document.createElement('button');
     var buttonRefresh = document.createElement('button');
-    var buttonNameRe = 'refreshBtn';
-    var buttonNameFe = 'more';
-    buttonFeed.setAttribute('id', buttonNameFe);
+    buttonFeed.setAttribute('id', 'more');
     buttonFeed.textContent = 'Load More';
-    buttonRefresh.setAttribute('id', buttonNameRe);
+    buttonRefresh.setAttribute('id', 'refreshBtn');
+    buttonRefresh.textContent = 'Refresh';
     document.body.appendChild(buttonFeed);
     console.log('Feed button created');
     document.body.appendChild(buttonRefresh);
@@ -119,14 +118,14 @@ var findFeed = function() {
                     response.data[z].message);
                 document.getElementById('usersFeed' + z).innerHTML = newTextContent;
                 z++;
-
-                document.addEventListener('scroll', function (event) {
-                    if (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) {
-                        findFeed();
-                    }
-                });
             }
         }
+
+        document.addEventListener('scroll', function (event) {
+            if (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) {
+                findFeed();
+            }
+        });
     });
 };
 
