@@ -83,7 +83,7 @@ var loggingIn = function() {
 //making divs required for feed and getting more of it
 //making the name area for feed
 var nameOfPoster = function() {
-    var newName = document.createElement("p");
+    var newName = document.createElement("div");
     var setP = "postersName" + q;
     newName.setAttribute("id", setP);
     newName.style.color = "#4a6ea9";
