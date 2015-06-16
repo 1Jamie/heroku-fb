@@ -5,7 +5,7 @@ var z = 0;
 //setup clear screen for function
 var clearPage = function() {
     document.body.innerHTML = '';
-}
+};
 
 //button creation of the top buttons and the more button
 //for loading more posts
@@ -81,18 +81,21 @@ var loggingIn = function() {
 };
 
 //making divs required for feed and getting more of it
+//making the name area for feed
+var nameOfPoster = function() {
+    var newName = document.createElement("p");
+    var setP = "postersName" + q;
+    newName.setAttribute("id", setP);
+    newName.style.color = "#4a6ea9";
+};
+//makeing divs required for feed and getting more of it
 var makeFeedDivs = function() {
     var newDiv = document.createElement("div");
     var setDivID = 'usersFeed' + q;
     newDiv.setAttribute('id', setDivID);
-    newDiv.style.paddingTop = "6px";
-    newDiv.style.paddingBottom = "8px";
-    newDiv.style.paddingLeft = "9px";
-    newDiv.style.background = "#D0D0D0";
-    newDiv.style.border = "solid #4a6ea9";
-    newDiv.style.borderRadius = "15px";
-
-    // add the newly created element and its content into the DOM 
+    newDiv.className = "feedBox";
+ 
+    // add the newly created element and its content into the DOM
     var currentDiv = document.getElementById("more");
     document.body.insertBefore(newDiv, currentDiv);
     //add a break so it looks nice with a space between them
@@ -102,30 +105,37 @@ var makeFeedDivs = function() {
 };
 
 //retrieving feed from facebook
+//retrieving feed from facebook
 var findFeed = function() {
     FB.api('me/home?fields=name,posts,message,from', function(response) {
         console.log(response);
         //setting a loop to retrieve feed and increase if more is requested
         for (var i = 0; i < 3; i++) {
             makeFeedDivs();
+            nameOfPoster();
+            var newNameContent = [];
             var newTextContent = [];
             if (response.error) {
                 console.log('Error - ' + response.error.message);
                 return;
             } else {
                 console.log(response);
-                newTextContent.push(response.data[z].from.name + ' - ' + '<br>' +
-                    response.data[z].message);
+                newNameContent.push(response.data[z].from.name);
+                newTextContent.push(response.data[z].message);
+                document.getElementById('postersName' + z).innerHTML = newNameContent;
                 document.getElementById('usersFeed' + z).innerHTML = newTextContent;
                 z++;
             }
         }
-
-        document.addEventListener('scroll', function (event) {
-            if (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) {
-                findFeed();
-            }
-        });
+    });
+};
+var morePosts = function() {
+    console.log('got button element more');
+    var loadMore = document.getElementById('more');
+    console.log('started listner for more button');
+ 
+    loadMore.addEventListener('click', function() {
+        findFeed();
     });
 };
 
