@@ -84,9 +84,10 @@ var loggingIn = function() {
 //making the name area for feed
 var nameOfPoster = function() {
     var newName = document.createElement("div");
-    var setP = "postersName" + q;
-    newName.setAttribute("id", setP);
+    var setNameId = "postersName" + q;
+    newName.setAttribute("id", setNameId);
     newName.style.color = "#4a6ea9";
+    console.log("postersName" + q);
 };
 //makeing divs required for feed and getting more of it
 var makeFeedDivs = function() {
@@ -122,8 +123,9 @@ var findFeed = function() {
                 console.log(response);
                 newNameContent.push(response.data[z].from.name);
                 newTextContent.push(response.data[z].message);
-                document.getElementById('postersName' + q).innerHTML = newNameContent;
-                document.getElementById('usersFeed' + q).innerHTML = newTextContent;
+                document.getElementById('postersName' + z).innerHTML = newNameContent;
+                document.getElementById('usersFeed' + z).innerHTML = newTextContent;
+                console.log("postersName" + q);
                 z++;
             }
         }
