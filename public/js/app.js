@@ -111,8 +111,8 @@ var findFeed = function() {
         console.log(response);
         //setting a loop to retrieve feed and increase if more is requested
         for (var i = 0; i < 3; i++) {
-            makeFeedDivs();
             nameOfPoster();
+            makeFeedDivs();
             var newNameContent = [];
             var newTextContent = [];
             if (response.error) {
