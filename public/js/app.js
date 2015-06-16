@@ -122,8 +122,8 @@ var findFeed = function() {
                 console.log(response);
                 newNameContent.push(response.data[z].from.name);
                 newTextContent.push(response.data[z].message);
-                document.getElementById('postersName' + z).innerHTML = newNameContent;
-                document.getElementById('usersFeed' + z).innerHTML = newTextContent;
+                document.getElementById('postersName' + q).innerHTML = newNameContent;
+                document.getElementById('usersFeed' + q).innerHTML = newTextContent;
                 z++;
             }
         }
