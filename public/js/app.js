@@ -89,8 +89,8 @@ var nameOfPoster = function() {
     newName.style.color = "#4a6ea9";
     console.log("postersName" + q);
     //add the newly created name element into the Dom
-    var currentDiv2 = document.getElementById("more")
-    document.body.insertBefore(newName, currentDiv2,);
+    var currentDiv2 = document.getElementById("more");
+    document.body.insertBefore(newName, currentDiv2);
 };
 //makeing divs required for feed and getting more of it
 var makeFeedDivs = function() {
@@ -115,9 +115,7 @@ var findFeed = function() {
         console.log(response);
         //setting a loop to retrieve feed and increase if more is requested
         for (var i = 0; i < 3; i++) {
-            console.log('making name divs')
             nameOfPoster();
-            console.log('makeing feed divs')
             makeFeedDivs();
             var newNameContent = [];
             var newTextContent = [];
