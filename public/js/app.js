@@ -27,8 +27,7 @@ var createTextArea = function() {
     textBox.width  = '90%';
     textBox.style.border = 'solid #4a6ea9';
     //place the text area in
-    var placement = getElementById('more');
-    document.body.insertBefore(textBox, placement);
+    document.body.appendChild(textBox);
 };
 //creates the top navigation buttons
 var createNavigation = function(){
@@ -39,9 +38,8 @@ var createNavigation = function(){
     navFeed.textContent = 'feed';
     navMsg.textContent= 'messages';
     //insert the buttons to navigate to feed and messages
-    var placement = getElementById('textarea');
-    document.body.insertBefore(navFeed, placement);
-    document.body.insertBefore(navMsg, placement);
+    document.body.appendChild(navFeed);
+    document.body.appendChild(navMsg);
 };
 
 //this is just for facebooks sake
@@ -54,15 +52,15 @@ function statusChangeCallback(response) {
 // for FB.getLoginStatus().
 if (response.status === 'connected') {
     // Logged into your app and Facebook.
+    createNavigation();
+    createTextArea();
     startButtons();
     var uid = response.authResponse.userID;
     var accessToken = response.authResponse.accessToken;
     console.log('ok user is connected will now do postStuff');
     testAPI();
-    createTextArea();
     postStuff();
     findFeed();
-    createNavigation();
     morePosts();
     refresh();
 
