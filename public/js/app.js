@@ -1,12 +1,10 @@
 //setting var(s) that are used
 var q = 0;
 var z = 0;
-
 //setup clear screen for function
 var clearPage = function() {
     document.body.innerHTML = '';
 };
-
 //button creation of the top buttons and the more button
 //for loading more posts
 var startButtons = function () {
@@ -21,8 +19,32 @@ var startButtons = function () {
     document.body.appendChild(buttonRefresh);
     console.log('refreshBtn created');
 };
+//creates the text area for the posting section
+var createTextArea = function() {
+    var textBox = document.createElement('textarea');
+    textBox.setAttribute('id', 'msg');
+    textBox.placeholder = 'Whats on your mind';
+    textBox.width  = '90%';
+    textBox.style.border = 'solid #4a6ea9';
+    //place the text area in
+    var placement = getElementById('more');
+    document.body.insertBefore(textBox, placement);
+};
+//creates the top navigation buttons
+var createNavigation = function(){
+    var navFeed = document.createElement('button');
+    var navMsg = document.createElement('button');
+    navFeed.setAttribute('id', 'openFeed');
+    navMsg.setAttribute('id', 'openMsg');
+    navFeed.textContent = 'feed';
+    navMsg.textContent= 'messages';
+    //insert the buttons to navigate to feed and messages
+    var placement = getElementById('textarea');
+    document.body.insertBefore(navFeed, placement);
+    document.body.insertBefore(navMsg, placement);
+};
 
-//this is current setup
+//this is just for facebooks sake
 function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -33,6 +55,7 @@ function statusChangeCallback(response) {
 if (response.status === 'connected') {
     // Logged into your app and Facebook.
     startButtons();
+    createTextArea();
     var uid = response.authResponse.userID;
     var accessToken = response.authResponse.accessToken;
     console.log('ok user is connected will now do postStuff');
@@ -40,6 +63,7 @@ if (response.status === 'connected') {
     postStuff();
     findFeed();
     morePosts();
+    refresh();
 
 } else if (response.status === 'not_authorized') {
     // The person is logged into Facebook, but not your app.
@@ -207,7 +231,6 @@ window.fbAsyncInit = function() {
     loggingIn();
     //check the login
     checkLoginState();
-    refresh();
 };
 
 // Load the SDK asynchronously
