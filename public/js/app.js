@@ -55,13 +55,14 @@ function statusChangeCallback(response) {
 if (response.status === 'connected') {
     // Logged into your app and Facebook.
     startButtons();
-    createTextArea();
     var uid = response.authResponse.userID;
     var accessToken = response.authResponse.accessToken;
     console.log('ok user is connected will now do postStuff');
     testAPI();
+    createTextArea();
     postStuff();
     findFeed();
+    createNavigation();
     morePosts();
     refresh();
 
