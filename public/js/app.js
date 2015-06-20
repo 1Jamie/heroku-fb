@@ -42,8 +42,7 @@ var createPostBtn = function () {
     postingButton.setAttribute('id', 'btnPost');
     postingButton.textContent = 'post';
     //inserting the post button into the
-    var currentDiv = document.getElementById('more');
-    document.insertBefore(postingButton, currentDiv);
+    document.body.appendChild(postingButton);
 };
 //creates the top navigation buttons
 var createNavigation = function(){
@@ -74,8 +73,9 @@ if (response.status === 'connected') {
     createNavigation();
     lineBreak();
     createTextArea();
-    startButtons();
+    lineBreak
     createPostBtn();
+    startButtons();
     testAPI();
     postStuff();
     findFeed();
