@@ -8,7 +8,7 @@ var clearPage = function() {
 //setting up an easier way to add a line break
 
 var lineBreak = function () {
-    var breaker = document.createElement(div);
+    var breaker = document.createElement('div');
     breaker.setAttribute('id', EmptyLine);
     breaker.innerHTML = '<br>';
     document.body.appendChild(breaker);
