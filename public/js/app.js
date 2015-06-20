@@ -5,8 +5,10 @@ var z = 0;
 var clearPage = function() {
     document.body.innerHTML = '';
 };
-//button creation of the top buttons and the more button
-//for loading more posts
+//setting up an easier way to add a line break
+var lineBreak = document.createElement(br);
+//button creation of the refresh button and the more
+//button for loading more posts
 var startButtons = function () {
     var buttonFeed = document.createElement('button');
     var buttonRefresh = document.createElement('button');
@@ -28,6 +30,17 @@ var createTextArea = function() {
     textBox.style.border = 'solid #4a6ea9';
     //place the text area in
     document.body.appendChild(textBox);
+    document.getElementById(msg);
+    document.insertBefore(lineBreak, msg);
+};
+//creates post button
+var createPostBtn = function () {
+    var postingButton = document.createElement('button');
+    postingButton.setAttribute('id', 'btnPost');
+    postingButton.textContent = 'post';
+    //inserting the post button into the
+    var currentDiv = document.getElementById('more');
+    document.insertBefore(postingButton, currentDiv);
 };
 //creates the top navigation buttons
 var createNavigation = function(){
@@ -36,7 +49,7 @@ var createNavigation = function(){
     navFeed.setAttribute('id', 'openFeed');
     navMsg.setAttribute('id', 'openMsg');
     navFeed.textContent = 'feed';
-    navMsg.textContent= 'messages';
+    navMsg.textContent = 'messages';
     //insert the buttons to navigate to feed and messages
     document.body.appendChild(navFeed);
     document.body.appendChild(navMsg);
@@ -52,12 +65,13 @@ function statusChangeCallback(response) {
 // for FB.getLoginStatus().
 if (response.status === 'connected') {
     // Logged into your app and Facebook.
-    createNavigation();
-    createTextArea();
-    startButtons();
     var uid = response.authResponse.userID;
     var accessToken = response.authResponse.accessToken;
     console.log('ok user is connected will now do postStuff');
+    createNavigation();
+    createTextArea();
+    startButtons();
+    createPostBtn();
     testAPI();
     postStuff();
     findFeed();
@@ -166,17 +180,6 @@ var morePosts = function() {
         findFeed();
     });
 };
-
-var morePosts = function() {
-    console.log('got button element more');
-    var loadMore = document.getElementById('more');
-    console.log('started listener for more button');
-
-    loadMore.addEventListener('click', function() {
-        findFeed();
-    });
-};
-
 //posting
 var postStuff = function(stuff) {
     console.log('got to element get');
