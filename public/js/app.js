@@ -26,6 +26,25 @@ var startButtons = function () {
     document.body.appendChild(buttonRefresh);
     console.log('refreshBtn created');
 };
+//starting up event listener for feed, thi will refresh
+//the feed if you are on it and open it if you are in messages
+var loadFeedButton = function() {
+    var userFeed = doccument.getElementById('openFeed');
+    userFeed.addEventListener('click', function() {
+        //loading up the feed
+        clearPage();
+        statusChangeCallback();
+        });
+};
+//starting up event lister for the messages button
+var loadMsgButton = function () {
+    var usersMessages = getElementById('openMsg');
+    usersMessages.addEventListener('click', function() {
+        //Messages will loaded up and start
+        clearPage();
+        
+    });
+};
 //creates the text area for the posting section
 var createTextArea = function() {
     var textBox = document.createElement('textarea');
@@ -73,7 +92,7 @@ if (response.status === 'connected') {
     createNavigation();
     lineBreak();
     createTextArea();
-    lineBreak
+    lineBreak();
     createPostBtn();
     startButtons();
     testAPI();
