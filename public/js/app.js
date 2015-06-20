@@ -26,6 +26,20 @@ var startButtons = function () {
     document.body.appendChild(buttonRefresh);
     console.log('refreshBtn created');
 };
+//function for specifically loading the feed
+var feedLoad = function(){
+    createNavigation();
+    lineBreak();
+    createTextArea();
+    lineBreak();
+    createPostBtn();
+    startButtons();
+    testAPI();
+    postStuff();
+    findFeed();
+    morePosts();
+    refresh();
+};
 //starting up event listener for feed, thi will refresh
 //the feed if you are on it and open it if you are in messages
 var loadFeedButton = function() {
@@ -33,7 +47,7 @@ var loadFeedButton = function() {
     userFeed.addEventListener('click', function() {
         //loading up the feed
         clearPage();
-        statusChangeCallback();
+        feedLoad();
         });
 };
 //starting up event lister for the messages button
@@ -88,19 +102,8 @@ if (response.status === 'connected') {
     // Logged into your app and Facebook.
     var uid = response.authResponse.userID;
     var accessToken = response.authResponse.accessToken;
+    feedLoad();
     console.log('ok user is connected will now do postStuff');
-    createNavigation();
-    lineBreak();
-    createTextArea();
-    lineBreak();
-    createPostBtn();
-    startButtons();
-    testAPI();
-    postStuff();
-    findFeed();
-    morePosts();
-    refresh();
-
 } else if (response.status === 'not_authorized') {
     // The person is logged into Facebook, but not your app.
     document.getElementById('myProfile').innerHTML = 'Please log into this app.';
