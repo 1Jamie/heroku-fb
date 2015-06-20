@@ -32,3 +32,6 @@ h1 {
 p {
 	font-size: inherit;
 }
+.feedText {
+	width: 93%;
+}

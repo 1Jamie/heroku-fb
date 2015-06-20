@@ -46,7 +46,7 @@ var loadFeedButton = function() {
     var userFeed = doccument.getElementById('openFeed');
     userFeed.addEventListener('click', function() {
         //loading up the feed
-        clearPage();
+        document.body.innerHTML = '';
         feedLoad();
         });
 };
@@ -64,7 +64,7 @@ var createTextArea = function() {
     var textBox = document.createElement('textarea');
     textBox.setAttribute('id', 'story');
     textBox.placeholder = 'Whats on your mind';
-    textBox.width  = '100px';
+    textBox.className = 'postText';
     textBox.style.border = 'solid #4a6ea9';
     //place the text area in
     document.body.appendChild(textBox);
@@ -230,7 +230,7 @@ var postStuff = function(stuff) {
             if (!response && !error.response) {
                 console.log('an error occured');
             } else {
-                setInterval(findFeed(), 2000);
+                setInterval(findFeed(), 3000);
                 document.getElementById('story').value = '';
                 console.log('connected and post was made');
                 console.log(response);
