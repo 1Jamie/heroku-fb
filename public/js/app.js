@@ -6,7 +6,13 @@ var clearPage = function() {
     document.body.innerHTML = '';
 };
 //setting up an easier way to add a line break
-var lineBreak = document.createElement(br);
+
+var lineBreak = function () {
+    var breaker = document.createElement(div);
+    breaker.setAttribute('id', EmptyLine);
+    breaker.innerHTML = '<br>';
+    document.body.appendChild(breaker);
+};
 //button creation of the refresh button and the more
 //button for loading more posts
 var startButtons = function () {
@@ -30,8 +36,6 @@ var createTextArea = function() {
     textBox.style.border = 'solid #4a6ea9';
     //place the text area in
     document.body.appendChild(textBox);
-    document.getElementById(msg);
-    document.insertBefore(lineBreak, msg);
 };
 //creates post button
 var createPostBtn = function () {
@@ -69,6 +73,7 @@ if (response.status === 'connected') {
     var accessToken = response.authResponse.accessToken;
     console.log('ok user is connected will now do postStuff');
     createNavigation();
+    lineBreak();
     createTextArea();
     startButtons();
     createPostBtn();
