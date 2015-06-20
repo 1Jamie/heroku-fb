@@ -62,9 +62,9 @@ var loadMsgButton = function () {
 //creates the text area for the posting section
 var createTextArea = function() {
     var textBox = document.createElement('textarea');
-    textBox.setAttribute('id', 'msg');
+    textBox.setAttribute('id', 'story');
     textBox.placeholder = 'Whats on your mind';
-    textBox.width  = '90%';
+    textBox.width  = '100px';
     textBox.style.border = 'solid #4a6ea9';
     //place the text area in
     document.body.appendChild(textBox);
