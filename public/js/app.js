@@ -9,7 +9,6 @@ var clearPage = function() {
 
 var lineBreak = function () {
     var breaker = document.createElement('div');
-    breaker.setAttribute('id', EmptyLine);
     breaker.innerHTML = '<br>';
     document.body.appendChild(breaker);
 };
