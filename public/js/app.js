@@ -178,6 +178,7 @@ var makeFeedDivs = function() {
 var findFeed = function() {
     FB.api('me/home?fields=name,posts,message,from', function(response) {
         console.log(response);
+        console.log('feed starting');
         //setting a loop to retrieve feed and increase if more is requested
         for (var i = 0; i < 3; i++) {
             nameOfPoster();
