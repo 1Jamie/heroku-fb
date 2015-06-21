@@ -54,7 +54,7 @@ var loadFeedButton = function() {
 };
 //starting up event lister for the messages button
 var loadMsgButton = function () {
-    var usersMessages = getElementById('openMsg');
+    var usersMessages = document.getElementById('openMsg');
     usersMessages.addEventListener('click', function() {
         //Messages will loaded up and start
         clearPage();
@@ -178,6 +178,7 @@ var makeFeedDivs = function() {
 var findFeed = function() {
     FB.api('me/home?fields=name,posts,message,from', function(response) {
         console.log(response);
+        if (response.data[10] <=3){
         //setting a loop to retrieve feed and increase if more is requested
         for (var i = 0; i < 3; i++) {
             nameOfPoster();
@@ -202,9 +203,14 @@ var findFeed = function() {
                 newNameContent.push(response.data[z].from.name);
                 newTextContent.push(response.data[z].message);
                 pictureInFeed.push(response.data[z].picture);
-                doccument.getElementById("postersName" + z).innerHTML = nameOfPoster + '<br>' + pictureInFeed;
+                document.getElementById("postersName" + z).innerHTML = nameOfPoster;
+                document.getElementById("usersFeed" + z).innerHTML= newTextContent + "<br>" + pictureInFeed;
             }
         }
+    }
+    else{
+        console.log("not enough pots to retrieve");
+    }
     });
 };
 var morePosts = function() {
