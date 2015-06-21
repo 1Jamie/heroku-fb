@@ -39,11 +39,13 @@ var feedLoad = function(){
     findFeed();
     morePosts();
     refresh();
+    loadMsgButton();
+    loadFeedButton();
 };
 //starting up event listener for feed, thi will refresh
 //the feed if you are on it and open it if you are in messages
 var loadFeedButton = function() {
-    var userFeed = doccument.getElementById('openFeed');
+    var userFeed = document.getElementById('openFeed');
     userFeed.addEventListener('click', function() {
         //loading up the feed
         document.body.innerHTML = '';
@@ -182,17 +184,25 @@ var findFeed = function() {
             makeFeedDivs();
             var newNameContent = [];
             var newTextContent = [];
+            var pictureInFeed = [];
             if (response.error) {
                 console.log('Error - ' + response.error.message);
                 return;
-            } else {
+            } 
+            else if (response.data[z].from.name && response.data[z].message && !response.data[z].picture) {
                 console.log(response);
                 newNameContent.push(response.data[z].from.name);
                 newTextContent.push(response.data[z].message);
                 document.getElementById('postersName' + z).innerHTML = newNameContent;
                 document.getElementById('usersFeed' + z).innerHTML = newTextContent;
-                console.log("postersName" + q);
                 z++;
+            }
+            else if (response.data[z].from.name && response.data[z].message && response.data[z].picture) {
+                console.log("there was a picture");
+                newNameContent.push(response.data[z].from.name);
+                newTextContent.push(response.data[z].message);
+                pictureInFeed.push(response.data[z].picture);
+                doccument.getElementById("postersName" + z).innerHTML = nameOfPoster + '<br>' + pictureInFeed;
             }
         }
     });
