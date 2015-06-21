@@ -26,17 +26,6 @@ var startButtons = function () {
     document.body.appendChild(buttonRefresh);
     console.log('refreshBtn created');
 };
-//seting the function for loading the feed after the firt time
-var reloadFeed = function(){
-    createNavigation();
-    lineBreak();
-    createTextArea();
-    lineBreak();
-    createPostBtn();
-    startButtons();
-    testAPI();
-    findFeed();
-}
 //function for specifically loading the feed the first time
 var feedLoad = function(){
     createNavigation();
@@ -63,7 +52,7 @@ var loadFeedButton = function() {
         z = 0
         //loading up the feed
         document.body.innerHTML = '';
-        reloadFeed();
+        feedLoad;
         });
 };
 //starting up event lister for the messages button
