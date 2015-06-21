@@ -26,8 +26,8 @@ var startButtons = function () {
     document.body.appendChild(buttonRefresh);
     console.log('refreshBtn created');
 };
-//function for specifically loading the feed
-var feedLoad = function(){
+//seting the function for loading the feed after the firt time
+var reloadFeed = function(){
     createNavigation();
     lineBreak();
     createTextArea();
@@ -36,6 +36,22 @@ var feedLoad = function(){
     startButtons();
     testAPI();
     findFeed();
+}
+//function for specifically loading the feed the first time
+var feedLoad = function(){
+    createNavigation();
+    lineBreak();
+    createTextArea();
+    lineBreak();
+    createPostBtn();
+    startButtons();
+    testAPI();
+    postStuff();
+    findFeed();
+    morePosts();
+    refresh();
+    loadMsgButton();
+    loadFeedButton();
 };
 //starting up event listener for feed, thi will refresh
 //the feed if you are on it and open it if you are in messages
@@ -44,10 +60,10 @@ var loadFeedButton = function() {
     userFeed.addEventListener('click', function() {
         //resetting variables
         q = 0;
-        z = 0;
+        z = 0
         //loading up the feed
         document.body.innerHTML = '';
-        feedLoad;
+        reloadFeed();
         });
 };
 //starting up event lister for the messages button
