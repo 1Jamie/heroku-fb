@@ -178,7 +178,6 @@ var makeFeedDivs = function() {
 var findFeed = function() {
     FB.api('me/home?fields=name,posts,message,from', function(response) {
         console.log(response);
-        if (response.data[10] <=3){
         //setting a loop to retrieve feed and increase if more is requested
         for (var i = 0; i < 3; i++) {
             nameOfPoster();
@@ -207,10 +206,6 @@ var findFeed = function() {
                 document.getElementById("usersFeed" + z).innerHTML= newTextContent + "<br>" + pictureInFeed;
             }
         }
-    }
-    else{
-        console.log("not enough pots to retrieve");
-    }
     });
 };
 var morePosts = function() {
