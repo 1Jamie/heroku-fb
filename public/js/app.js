@@ -35,21 +35,19 @@ var feedLoad = function(){
     createPostBtn();
     startButtons();
     testAPI();
-    postStuff();
     findFeed();
-    morePosts();
-    refresh();
-    loadMsgButton();
-    loadFeedButton();
 };
 //starting up event listener for feed, thi will refresh
 //the feed if you are on it and open it if you are in messages
 var loadFeedButton = function() {
     var userFeed = document.getElementById('openFeed');
     userFeed.addEventListener('click', function() {
+        //resetting variables
+        q = 0;
+        z = 0;
         //loading up the feed
         document.body.innerHTML = '';
-        feedLoad();
+        feedLoad;
         });
 };
 //starting up event lister for the messages button
@@ -173,7 +171,6 @@ var makeFeedDivs = function() {
     q++;
 };
 
-//retrieving feed from facebook
 //retrieving feed from facebook
 var findFeed = function() {
     FB.api('me/home?fields=name,posts,message,from', function(response) {
