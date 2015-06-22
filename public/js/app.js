@@ -43,6 +43,7 @@ var startButtons = function () {
 };
 //function for specifically loading the feed the first time
 var feedLoad = function(){
+    connectionSet();
     createNavigation();
     lineBreak();
     createTextArea();
@@ -67,7 +68,7 @@ var loadFeedButton = function() {
         z = 0;
         //loading up the feed
         document.body.innerHTML = '';
-        feedLoad();
+        window.location.reload(true);
         });
 };
 //starting up event lister for the messages button
@@ -75,8 +76,11 @@ var loadMsgButton = function () {
     var usersMessages = document.getElementById('openMsg');
     usersMessages.addEventListener('click', function() {
         //Messages will loaded up and start
+        connectionSet();
         clearPage();
-        
+        createNavigation();
+        loadMsgButton();
+        loadFeedButton();
     });
 };
 //creates the text area for the posting section
