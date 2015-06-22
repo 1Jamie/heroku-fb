@@ -5,6 +5,21 @@ var z = 0;
 var clearPage = function() {
     document.body.innerHTML = '';
 };
+var connectionSet = function() {
+    window.fbAsyncInit = function() {
+    FB.init({
+        appId: '1432144570413455',
+        cookie: true, // enable cookies to allow the server to access 
+        // the session
+        xfbml: true, // parse social plugins on this page
+        version: 'v2.3' // use version 2.3
+    });
+    //logging in
+    loggingIn();
+    //check the login
+    checkLoginState();
+};
+};
 //setting up an easier way to add a line break
 
 var lineBreak = function () {
@@ -49,10 +64,10 @@ var loadFeedButton = function() {
     userFeed.addEventListener('click', function() {
         //resetting variables
         q = 0;
-        z = 0
+        z = 0;
         //loading up the feed
         document.body.innerHTML = '';
-        feedLoad;
+        feedLoad();
         });
 };
 //starting up event lister for the messages button
