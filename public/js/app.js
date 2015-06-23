@@ -3,10 +3,10 @@ var q = 0;
 var z = 0;
 //setting up the call to facebook for getting messages
 var messaging = function() {
-    FB.api(/me/inbox function(reponse){
+    FB.api('/me/inbox', function(reponse){
     console.log(response);
+});
 };
-)};
 //setup clear screen for function
 var clearPage = function() {
     document.body.innerHTML = '';
