@@ -3,8 +3,14 @@ var q = 0;
 var z = 0;
 //setting up the call to facebook for getting messages
 var messaging = function() {
-    FB.api('/me/inbox', function(reponse){
+    FB.api('/me/inbox?', function(reponse){
     console.log(response);
+    if (response.error) {
+        console.log('error retieciving from facebook');
+    }
+    else {
+        console.log('should have gotten the response');
+    }
 });
 };
 //setup clear screen for function
