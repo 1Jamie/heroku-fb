@@ -1,6 +1,12 @@
 //setting var(s) that are used
 var q = 0;
 var z = 0;
+//setting up the call to facebook for getting messages
+var messaging = function() {
+    FB.api(/me/inbox function(reponse){
+    console.log(response);
+};
+)};
 //setup clear screen for function
 var clearPage = function() {
     document.body.innerHTML = '';
@@ -43,6 +49,7 @@ var startButtons = function () {
 };
 //function for specifically loading the feed the first time
 var feedLoad = function(){
+    messaging();
     connectionSet();
     createNavigation();
     lineBreak();
