@@ -43,15 +43,15 @@ var lineBreak = function () {
 //button for loading more posts
 var startButtons = function () {
     var buttonFeed = document.createElement('button');
-    //var buttonRefresh = document.createElement('button');
+    var buttonRefresh = document.createElement('button');
     buttonFeed.setAttribute('id', 'more');
     buttonFeed.textContent = 'Load More';
-    //buttonRefresh.setAttribute('id', 'refreshBtn');
-    //buttonRefresh.textContent = 'Refresh';
+    buttonRefresh.setAttribute('id', 'refreshBtn');
+    buttonRefresh.textContent = 'Refresh';
     document.body.appendChild(buttonFeed);
     console.log('Feed button created');
-    //document.body.appendChild(buttonRefresh);
-    //console.log('refreshBtn created');
+    document.body.appendChild(buttonRefresh);
+    console.log('refreshBtn created');
 };
 //function for specifically loading the feed the first time
 var feedLoad = function(){
@@ -67,7 +67,7 @@ var feedLoad = function(){
     postStuff();
     findFeed();
     morePosts();
-    //refresh();
+    refresh();
     loadMsgButton();
     loadFeedButton();
 };
@@ -94,6 +94,7 @@ var loadMsgButton = function () {
         createNavigation();
         loadMsgButton();
         loadFeedButton();
+        messaging();
     });
 };
 //creates the text area for the posting section
