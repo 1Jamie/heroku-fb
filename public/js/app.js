@@ -279,7 +279,7 @@ var postStuff = function(stuff) {
             if (!response && !error.response) {
                 console.log('an error occured');
             } else {
-                setInterval(findFeed(), 3000);
+                setInterval(findFeed(), 3500);
                 document.getElementById('story').value = '';
                 console.log('connected and post was made');
                 console.log(response);
