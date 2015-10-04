@@ -298,7 +298,7 @@ function checkLoginState() {
 //testing to see if cookie : true works better for performance
 window.fbAsyncInit = function() {
     FB.init({
-        appId: '1432144570413455',
+        appId: '495182763975357',
         cookie: true, // enable cookies to allow the server to access 
         // the session
         xfbml: true, // parse social plugins on this page
